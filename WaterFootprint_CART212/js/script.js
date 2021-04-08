@@ -9,6 +9,8 @@ CART212 Final Project
 
 let myFont = undefined;
 
+let state = `title` // Title, Animation, Attive, Passive
+
 /**
 Description of preload
 */
@@ -24,7 +26,10 @@ Description of setup
 */
 function setup() {
 
-  createCanvas(700, 500);
+  createCanvas(720, 520);
+  noStroke();
+  textFont(myFont);
+  textAlign(RIGHT, RIGHT);
 }
 
 
@@ -35,6 +40,21 @@ function draw() {
   background(35);
 
   if (state === `title`){
+
+    // Text
+    push();
+    fill(255);
+    textSize(45);
+    textAlign(CENTER, CENTER);
+    text(`WATER  FOOTPRINT`, width/2, height/2);
+    textSize(22);
+    // textAlign(LEFT, LEFT);
+    text(`Press  SPACEBAR  to  start`, width/2, 440);
+    pop();
+
+
+  }
+  else if (state === `animation`){
 
   }
   else if (state === `attive`){
@@ -47,4 +67,10 @@ function draw() {
 
   }
 
+}
+
+function keyPressed(){
+  if ( keyCode === 32 && state === `title`){
+    state = `attive`;
+  }
 }
