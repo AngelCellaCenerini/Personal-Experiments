@@ -11,6 +11,13 @@ let myFont = undefined;
 let lights = undefined;
 let avatar = undefined;
 
+let fadedText = {
+  x: 375,
+  y1: 135,
+  y2: 165,
+  active: true
+}
+
 let state = `active` // Title, Animation, active, Passive
 
 /**
@@ -34,7 +41,7 @@ function setup() {
   createCanvas(750, 700);
   noStroke();
   textFont(myFont);
-  textAlign(RIGHT, RIGHT);
+  textAlign(CENTER, CENTER);
   rectMode(CENTER);
   imageMode(CENTER);
 }
@@ -52,10 +59,8 @@ function draw() {
     push();
     fill(255);
     textSize(45);
-    textAlign(CENTER, CENTER);
     text(`WATER  FOOTPRINT`, width/2, height/2);
     textSize(22);
-    // textAlign(LEFT, LEFT);
     text(`Press  SPACEBAR  to  start`, width/2, 440);
     pop();
 
@@ -68,14 +73,14 @@ function draw() {
     // User Platform
     push();
     fill(139, 217, 199);
-    rect(150, 330, 75, 18);
+    rect(120, 320, 75, 18);
     pop();
 
     // Avatar
-    image(avatar, 150, 280);
+    image(avatar, 120, 270);
 
     // Lights
-    image(lights, width/2, 180);
+    image(lights, width/2, 175);
 
     // Base
     push();
@@ -85,13 +90,44 @@ function draw() {
     rect(width/2, 400, 200, 300);
     pop();
 
-    // Text
+    // Faded Score
+    if (fadedText.active){
+      push();
+      fill(255, 25);
+      textSize(26);
+      text(`WHAT'S NEXT?`, fadedText.x, fadedText.y1);
+      text(`+  MORE WATER!`, fadedText.x, fadedText.y2);
+      pop();
+    }
+
+
+    // // Score
+    // push();
+    // fill(255);
+    // textSize(26);
+    // text(`HIGH SCORE`, width/2, 135);
+    // text(`+  HIGH SCORE`, width/2, 165);
+    // pop();
+
+    // High Score Blinking
+    let scoreBlink = setInterval(highScoreBlinking, 300);
+
+    // Waterfall
+
+    // Black Border
     push();
-    fill(251, 171, 14);
-    textSize(45);
-    textAlign(CENTER, CENTER);
-    text(`HIGH SCORE`, width/2, 80);
+    fill(30);
+    rect(width/2, 662, 250, 220);
     pop();
+
+    // Instructions
+    push();
+    fill(255);
+    textSize(23);
+    text(`Keep  pressing  ENTER!`, width/2, 600);
+    pop();
+
+    // Water Dripping
 
 
 
@@ -103,6 +139,15 @@ function draw() {
 
   }
 
+}
+
+function highScoreBlinking(){
+  // Text
+  push();
+  fill(251, 167, 14);
+  textSize(60);
+  text(`HIGH SCORE`, width/2, 75);
+  pop();
 }
 
 function keyPressed(){
