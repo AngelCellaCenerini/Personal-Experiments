@@ -11,7 +11,7 @@ let myFont = undefined;
 let lights = undefined;
 let avatar = undefined;
 
-let state = `attive` // Title, Animation, Attive, Passive
+let state = `active` // Title, Animation, active, Passive
 
 /**
 Description of preload
@@ -31,7 +31,7 @@ Description of setup
 */
 function setup() {
 
-  createCanvas(850, 520);
+  createCanvas(750, 700);
   noStroke();
   textFont(myFont);
   textAlign(RIGHT, RIGHT);
@@ -63,19 +63,37 @@ function draw() {
   else if (state === `animation`){
 
   }
-  else if (state === `attive`){
+  else if (state === `active`){
 
     // User Platform
     push();
     fill(139, 217, 199);
-    rect(150, 220, 80, 20);
+    rect(150, 330, 75, 18);
     pop();
 
     // Avatar
-    image(avatar, 150, 170);
+    image(avatar, 150, 280);
 
     // Lights
-    image(lights, 670, height/2);
+    image(lights, width/2, 180);
+
+    // Base
+    push();
+    noFill();
+    stroke(255);
+    strokeWeight(5);
+    rect(width/2, 400, 200, 300);
+    pop();
+
+    // Text
+    push();
+    fill(251, 171, 14);
+    textSize(45);
+    textAlign(CENTER, CENTER);
+    text(`HIGH SCORE`, width/2, 80);
+    pop();
+
+
 
   }
   else if (state === `passive`){
@@ -89,6 +107,6 @@ function draw() {
 
 function keyPressed(){
   if ( keyCode === 32 && state === `title`){
-    state = `attive`;
+    state = `active`;
   }
 }
