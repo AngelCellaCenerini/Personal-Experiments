@@ -7,7 +7,7 @@ Angel Cella Cenerini
 CART212 Final Project
 */
 
-let timerInstructions = 2;
+let timerInstructions = 3;
 let timerButton = 2;
 
 let waltz1 = undefined;
@@ -200,16 +200,6 @@ function instructionsTimer(){
  }
 }
 
-function buttonTimer(){
-  if(frameCount % 60 === 0 && timerButton > 0){
-    timerButton --;
-  }
-  if(timerButton === 0){
-   button.active = false;
-   timerButton = 2;
- }
-}
-
 function keyPressed(){
   if ( keyCode === 32 && state === `title`){
     state = `active`;
@@ -219,10 +209,15 @@ function keyPressed(){
 
     // Reset Command
     instructions.active = false;
-    timerInstructions = 2;
+    timerInstructions = 3;
     // Start Button
-    button.active = true;
-    buttonTimer();
+
+    // buttonTimer();
+    if (keyIsPressed){
+      button.active = true;
+    }
+
+    }
     // Display Keyboard
     displayPressedKeyboard();
     // Play
@@ -230,6 +225,12 @@ function keyPressed(){
       waltz1.play();
     }
   }
+
+function keyReleased(){
+  if (state === `active`){
+    button.active = false;
+  }
+
 }
 
 function displayPressedKeyboard(){
