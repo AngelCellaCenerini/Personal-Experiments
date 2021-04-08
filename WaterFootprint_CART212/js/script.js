@@ -7,15 +7,33 @@ Angel Cella Cenerini
 CART212 Final Project
 */
 
+let timerInstructions = 2;
+let timerButton = 2;
+
+let waltz1 = undefined;
+
 let myFont = undefined;
 let lights = undefined;
 let avatar = undefined;
+
+
+let instructions = {
+  active: false
+}
+
+let button = {
+  active: false
+}
 
 let fadedText = {
   x: 375,
   y1: 135,
   y2: 165,
   active: true
+}
+
+let highlight = {
+  active: false
 }
 
 let state = `active` // Title, Animation, active, Passive
@@ -29,6 +47,8 @@ function preload() {
 
   lights = loadImage('assets/images/lightGIF6.gif');
   avatar = loadImage('assets/images/clown.png');
+
+  waltz1 = loadSound('assets/sounds/bark.wav');
 
 }
 
@@ -101,7 +121,7 @@ function draw() {
     }
 
 
-    // // Score
+    // Score
     // push();
     // fill(255);
     // textSize(26);
@@ -110,24 +130,45 @@ function draw() {
     // pop();
 
     // High Score Blinking
-    let scoreBlink = setInterval(highScoreBlinking, 300);
+    // setInterval(highScoreBlinking, 2000);
 
     // Waterfall
 
-    // Black Border
-    push();
-    fill(30);
-    rect(width/2, 662, 250, 220);
-    pop();
+    // // Black Border
+    // push();
+    // fill(30);
+    // rect(width/2, 662, 250, 220);
+    // pop();
+
+    instructionsTimer();
 
     // Instructions
-    push();
-    fill(255);
-    textSize(23);
-    text(`Keep  pressing  ENTER!`, width/2, 600);
-    pop();
+    // setTimeout( () => {
+    //   instructions.active = true;
+    // }, 2000);
+
+    if (instructions.active){
+      push();
+      fill(255);
+      textSize(23);
+      text(`Keep  pressing  ENTER!`, width/2, 600);
+      pop();
+    }
+
 
     // Water Dripping
+
+    // Highlight
+    if (button.active){
+      push();
+      fill(255);
+      rect(width/2, 604, 210, 30);
+      fill(0);
+      textSize(23);
+      text(`ENTER  key  pressed`, width/2, 600);
+      pop();
+    }
+
 
 
 
@@ -150,8 +191,50 @@ function highScoreBlinking(){
   pop();
 }
 
+function instructionsTimer(){
+  if(frameCount % 60 === 0 && timerInstructions > 0){
+    timerInstructions --;
+  }
+  if(timerInstructions === 0){
+   instructions.active = true;
+ }
+}
+
+function buttonTimer(){
+  if(frameCount % 60 === 0 && timerButton > 0){
+    timerButton --;
+  }
+  if(timerButton === 0){
+   button.active = false;
+   timerButton = 2;
+ }
+}
+
 function keyPressed(){
   if ( keyCode === 32 && state === `title`){
     state = `active`;
   }
+
+  if ( keyCode === 13 && state === `active`){
+
+    // Reset Command
+    instructions.active = false;
+    timerInstructions = 2;
+    // Start Button
+    button.active = true;
+    buttonTimer();
+    // Display Keyboard
+    displayPressedKeyboard();
+    // Play
+    if (!waltz1.isPlaying()){
+      waltz1.play();
+    }
+  }
+}
+
+function displayPressedKeyboard(){
+  push();
+  fill(255);
+  rect(300, 400, 400);
+  pop();
 }
