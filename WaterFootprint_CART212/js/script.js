@@ -36,6 +36,9 @@ let highlight = {
   active: false
 }
 
+let waterfall = undefined;
+let waterfallImage = undefined;
+
 let state = `active` // Title, Animation, active, Passive
 
 /**
@@ -47,6 +50,7 @@ function preload() {
 
   lights = loadImage('assets/images/lightGIF6.gif');
   avatar = loadImage('assets/images/clown.png');
+  waterfallImage = loadImage('assets/images/waterfall.gif');
 
   waltz1 = loadSound('assets/sounds/bark.wav');
 
@@ -64,6 +68,9 @@ function setup() {
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
   imageMode(CENTER);
+
+  // Waterfall
+  waterfall = new Waterfall (waterfallImage);
 }
 
 
@@ -102,14 +109,6 @@ function draw() {
     // Lights
     image(lights, width/2, 175);
 
-    // Base
-    push();
-    noFill();
-    stroke(255);
-    strokeWeight(5);
-    rect(width/2, 400, 200, 300);
-    pop();
-
     // Faded Score
     if (fadedText.active){
       push();
@@ -133,12 +132,21 @@ function draw() {
     // setInterval(highScoreBlinking, 2000);
 
     // Waterfall
+    waterfall.update();
 
-    // // Black Border
-    // push();
-    // fill(30);
-    // rect(width/2, 662, 250, 220);
-    // pop();
+    // Black Border
+    push();
+    fill(30);
+    rect(width/2, 662, 250, 220);
+    pop();
+
+    // Base
+    push();
+    noFill();
+    stroke(255);
+    strokeWeight(5);
+    rect(width/2, 400, 200, 300);
+    pop();
 
     instructionsTimer();
 
@@ -151,7 +159,7 @@ function draw() {
       push();
       fill(255);
       textSize(23);
-      text(`Keep  pressing  ENTER!`, width/2, 600);
+      text(`Press  the  ENTER  key!`, width/2, 600);
       pop();
     }
 
@@ -217,13 +225,18 @@ function keyPressed(){
       button.active = true;
     }
 
-    }
+    // Waterfall
+    waterfall.active = true;
+
     // Display Keyboard
     displayPressedKeyboard();
     // Play
-    if (!waltz1.isPlaying()){
-      waltz1.play();
+    // if (!waltz1.isPlaying()){
+    //   waltz1.play();
+    // }
+
     }
+
   }
 
 function keyReleased(){
