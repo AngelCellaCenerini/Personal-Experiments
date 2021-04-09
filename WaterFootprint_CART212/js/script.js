@@ -7,7 +7,7 @@ Angel Cella Cenerini
 CART212 Final Project
 */
 
-let timerInstructions = 3;
+let timerInstructions = 1;
 let timerInstructions2 = 5;
 let timerButton = 2;
 
@@ -17,6 +17,7 @@ let myFont = undefined;
 let lights = undefined;
 let avatar = undefined;
 
+let userInput = undefined;
 let userInputs = [];
 
 
@@ -44,6 +45,14 @@ let waterfallImage = undefined;
 let splash = undefined;
 let splashImage = undefined;
 
+// Score
+let highScore = undefined;
+let score = undefined;
+
+// Objects
+let cow = undefined;
+let cowImage = undefined;
+
 let state = `active` // Title, Animation, active, Passive
 
 /**
@@ -57,6 +66,9 @@ function preload() {
   avatar = loadImage('assets/images/clown.png');
   waterfallImage = loadImage('assets/images/waterfall.gif');
   splashImage = loadImage('assets/images/splash2.gif');
+
+  // Objects
+  cowImage = loadImage('assets/images/cow.gif');
 
   waltz1 = loadSound('assets/sounds/bark.wav');
 
@@ -75,11 +87,14 @@ function setup() {
   rectMode(CENTER);
   imageMode(CENTER);
 
+  // Objects
+  cow = new Product(cowImage);
+
   // Waterfall
-  waterfall = new Waterfall (waterfallImage);
+  waterfall = new Waterfall(waterfallImage);
 
   // Splash
-  splash = new Splash (splashImage);
+  splash = new Splash(splashImage);
 }
 
 
@@ -126,13 +141,15 @@ function draw() {
     // push();
     // fill(255);
     // textSize(26);
-    // text(`HIGH SCORE`, width/2, 135);
-    // text(`+  HIGH SCORE`, width/2, 165);
+    // text(`HIGH SCORE`, width/2, 115);
+    // text(`+  HIGH SCORE`, width/2, 145);
     // pop();
 
     // High Score Blinking
-    setInterval(highScoreBlinking, 2000);
-    highScoreBlinking();
+    // setInterval(highScoreBlinking, 2000);
+    // highScoreBlinking();
+
+    triggerAnimation();
 
     // Waterfall
     waterfall.update();
@@ -156,11 +173,6 @@ function draw() {
 
     instructionsTimer();
 
-    // Instructions
-    // setTimeout( () => {
-    //   instructions.active = true;
-    // }, 2000);
-
     if (instructions.active){
       push();
       fill(255);
@@ -168,7 +180,6 @@ function draw() {
       text(`Press  the  ENTER  key!`, width/2, 574);
       pop();
     }
-
 
     // Water Dripping
 
@@ -203,14 +214,14 @@ function titleText(){
   pop();
 }
 
-function highScoreBlinking(){
-  // Text
-  push();
-  fill(251, 167, 14);
-  textSize(60);
-  text(`HIGH SCORE`, width/2, 45);
-  pop();
-}
+// function highScoreBlinking(){
+//   // Text
+//   push();
+//   fill(251, 167, 14);
+//   textSize(60);
+//   text(`HIGH SCORE`, width/2, 45);
+//   pop();
+// }
 
 function instructionsTimer(){
   if(frameCount % 60 === 0 && timerInstructions > 0){
@@ -221,6 +232,23 @@ function instructionsTimer(){
  }
 }
 
+function triggerAnimation(){
+  // Cow
+  cow.display();
+  if(cow.active){
+  setTimeout( ()=>{
+      cow.active = false;
+  }, 3000);
+}
+
+
+
+  // Scores
+
+
+}
+
+//
 function keyPressed(){
   if ( keyCode === 32 && state === `title`){
     state = `active`;
@@ -228,12 +256,20 @@ function keyPressed(){
 
   if ( keyCode === 13 && state === `active`){
 
+    // Add Input
+    userInputs.push(userInput);
+
     // Reset Command
     instructions.active = false;
     timerInstructions = 5;
     // Start Button
     if (keyIsPressed){
       button.active = true;
+    }
+
+    // Cow
+    if (userInputs.length < 2){
+        cow.activate();
     }
 
     // Waterfall
@@ -244,8 +280,6 @@ function keyPressed(){
         splash.active = true;
     }, 2200);
 
-    // Display Keyboard
-    displayPressedKeyboard();
     // Play
     // if (!waltz1.isPlaying()){
     //   waltz1.play();
@@ -258,7 +292,5 @@ function keyPressed(){
 function keyReleased(){
   if (state === `active`){
     button.active = false;
-
   }
-
 }
