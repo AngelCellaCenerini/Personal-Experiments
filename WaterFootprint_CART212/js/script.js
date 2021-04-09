@@ -30,8 +30,8 @@ let button = {
 
 let fadedText = {
   x: 375,
-  y1: 135,
-  y2: 165,
+  y1: 115,
+  y2: 145,
   active: true
 }
 
@@ -68,7 +68,7 @@ Description of setup
 */
 function setup() {
 
-  createCanvas(750, 650);
+  createCanvas(750, 630);
   noStroke();
   textFont(myFont);
   textAlign(CENTER, CENTER);
@@ -91,14 +91,7 @@ function draw() {
 
   if (state === `title`){
 
-    // Text
-    push();
-    fill(255);
-    textSize(45);
-    text(`WATER  FOOTPRINT`, width/2, height/2);
-    textSize(22);
-    text(`Press  SPACEBAR  to  start`, width/2, 440);
-    pop();
+    titleText();
 
   }
   else if (state === `animation`){
@@ -109,14 +102,14 @@ function draw() {
     // User Platform
     push();
     fill(139, 217, 199);
-    rect(120, 320, 75, 18);
+    rect(120, 290, 75, 18);
     pop();
 
     // Avatar
-    image(avatar, 120, 270);
+    image(avatar, 120, 240);
 
     // Lights
-    image(lights, width/2, 175);
+    image(lights, width/2, 155);
 
     // Faded Score
     if (fadedText.active){
@@ -139,6 +132,7 @@ function draw() {
 
     // High Score Blinking
     setInterval(highScoreBlinking, 2000);
+    highScoreBlinking();
 
     // Waterfall
     waterfall.update();
@@ -149,7 +143,7 @@ function draw() {
     // Black Border
     push();
     fill(30);
-    rect(width/2, 662, 250, 220);
+    rect(width/2, 632, 250, 220);
     pop();
 
     // Base
@@ -157,7 +151,7 @@ function draw() {
     noFill();
     stroke(255);
     strokeWeight(5);
-    rect(width/2, 400, 200, 300);
+    rect(width/2, 370, 200, 300);
     pop();
 
     instructionsTimer();
@@ -171,7 +165,7 @@ function draw() {
       push();
       fill(255);
       textSize(23);
-      text(`Press  the  ENTER  key!`, width/2, 600);
+      text(`Press  the  ENTER  key!`, width/2, 574);
       pop();
     }
 
@@ -182,10 +176,10 @@ function draw() {
     if (button.active){
       push();
       fill(255);
-      rect(width/2, 604, 210, 30);
+      rect(width/2, 574, 210, 30);
       fill(0);
       textSize(23);
-      text(`ENTER  key  pressed`, width/2, 600);
+      text(`ENTER  key  pressed`, width/2, 570);
       pop();
     }
   }
@@ -198,12 +192,23 @@ function draw() {
 
 }
 
+function titleText(){
+  // Text
+  push();
+  fill(255);
+  textSize(45);
+  text(`WATER  FOOTPRINT`, width/2, height/2);
+  textSize(22);
+  text(`Press  SPACEBAR  to  start`, width/2, 440);
+  pop();
+}
+
 function highScoreBlinking(){
   // Text
   push();
   fill(251, 167, 14);
   textSize(60);
-  text(`HIGH SCORE`, width/2, 75);
+  text(`HIGH SCORE`, width/2, 45);
   pop();
 }
 
