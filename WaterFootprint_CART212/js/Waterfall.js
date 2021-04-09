@@ -4,7 +4,7 @@ class Waterfall {
     this.y = -250;
     this.vx = 0;
     this.vy = 0;
-    this.speed = 0.065;
+    this.speed = 0.07;
     this.limit = 850;
     this.image = image;
     this.active = false;

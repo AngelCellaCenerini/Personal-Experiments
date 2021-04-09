@@ -52,6 +52,8 @@ let score = undefined;
 // Objects
 let cow = undefined;
 let cowImage = undefined;
+let cotton = undefined;
+let cottonImage = undefined;
 
 let state = `active` // Title, Animation, active, Passive
 
@@ -69,6 +71,7 @@ function preload() {
 
   // Objects
   cowImage = loadImage('assets/images/cow.gif');
+  cottonImage = loadImage('assets/images/cotton.gif');
 
   waltz1 = loadSound('assets/sounds/bark.wav');
 
@@ -82,6 +85,7 @@ function setup() {
 
   createCanvas(750, 630);
   noStroke();
+  noCursor();
   textFont(myFont);
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
@@ -89,6 +93,7 @@ function setup() {
 
   // Objects
   cow = new Product(cowImage);
+  cotton = new Product(cottonImage);
 
   // Waterfall
   waterfall = new Waterfall(waterfallImage);
@@ -239,8 +244,16 @@ function triggerAnimation(){
   setTimeout( ()=>{
       cow.active = false;
   }, 3000);
-}
+  }
 
+
+  // Cotton
+  cotton.display();
+  if(cotton.active){
+  setTimeout( ()=>{
+    cotton.active = false;
+  }, 3000);
+  }
 
 
   // Scores
@@ -270,6 +283,10 @@ function keyPressed(){
     // Cow
     if (userInputs.length < 2){
         cow.activate();
+    }
+
+    if (userInputs.length < 3 && userInputs.length > 1){
+        cotton.activate();
     }
 
     // Waterfall
