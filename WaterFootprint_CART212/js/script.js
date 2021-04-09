@@ -154,6 +154,10 @@ function draw() {
     score1.displayHighScore();
     score1.displayScore();
 
+    // Cotton
+    score2.displayHighScore();
+    score2.displayScore();
+
 
     triggerAnimation();
 
@@ -244,15 +248,12 @@ function triggerAnimation(){
   // Cotton
   cotton.display();
   if(cotton.active){
-  setTimeout( ()=>{
+  setTimeout(()=>{
     cotton.active = false;
     score2.deactivate();
     fadedText.active = true;
   }, 3000);
   }
-
-
-  // Scores
 
 
 }
@@ -289,8 +290,8 @@ function keyPressed(){
     if (userInputs.length < 3 && userInputs.length > 1){
         cotton.activate();
         setTimeout(()=>{
-          score1.activeH = true;
-          score1.activeS = true;
+          score2.activeH = true;
+          score2.activeS = true;
           fadedText.active = false;
         }, 3000);
     }
