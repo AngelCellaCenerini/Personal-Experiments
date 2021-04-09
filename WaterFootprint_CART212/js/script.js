@@ -8,6 +8,7 @@ CART212 Final Project
 */
 
 let timerInstructions = 3;
+let timerInstructions2 = 5;
 let timerButton = 2;
 
 let waltz1 = undefined;
@@ -15,6 +16,8 @@ let waltz1 = undefined;
 let myFont = undefined;
 let lights = undefined;
 let avatar = undefined;
+
+let userInputs = [];
 
 
 let instructions = {
@@ -38,6 +41,8 @@ let highlight = {
 
 let waterfall = undefined;
 let waterfallImage = undefined;
+let splash = undefined;
+let splashImage = undefined;
 
 let state = `active` // Title, Animation, active, Passive
 
@@ -51,6 +56,7 @@ function preload() {
   lights = loadImage('assets/images/lightGIF6.gif');
   avatar = loadImage('assets/images/clown.png');
   waterfallImage = loadImage('assets/images/waterfall.gif');
+  splashImage = loadImage('assets/images/splash2.gif');
 
   waltz1 = loadSound('assets/sounds/bark.wav');
 
@@ -62,7 +68,7 @@ Description of setup
 */
 function setup() {
 
-  createCanvas(750, 700);
+  createCanvas(750, 650);
   noStroke();
   textFont(myFont);
   textAlign(CENTER, CENTER);
@@ -71,6 +77,9 @@ function setup() {
 
   // Waterfall
   waterfall = new Waterfall (waterfallImage);
+
+  // Splash
+  splash = new Splash (splashImage);
 }
 
 
@@ -129,10 +138,13 @@ function draw() {
     // pop();
 
     // High Score Blinking
-    // setInterval(highScoreBlinking, 2000);
+    setInterval(highScoreBlinking, 2000);
 
     // Waterfall
     waterfall.update();
+
+    // Splash
+    splash.update();
 
     // Black Border
     push();
@@ -176,10 +188,6 @@ function draw() {
       text(`ENTER  key  pressed`, width/2, 600);
       pop();
     }
-
-
-
-
   }
   else if (state === `passive`){
 
@@ -217,16 +225,19 @@ function keyPressed(){
 
     // Reset Command
     instructions.active = false;
-    timerInstructions = 3;
+    timerInstructions = 5;
     // Start Button
-
-    // buttonTimer();
     if (keyIsPressed){
       button.active = true;
     }
 
     // Waterfall
     waterfall.active = true;
+
+    // Splash
+    setTimeout( ()=>{
+        splash.active = true;
+    }, 2200);
 
     // Display Keyboard
     displayPressedKeyboard();
@@ -242,13 +253,7 @@ function keyPressed(){
 function keyReleased(){
   if (state === `active`){
     button.active = false;
+
   }
 
-}
-
-function displayPressedKeyboard(){
-  push();
-  fill(255);
-  rect(300, 400, 400);
-  pop();
 }

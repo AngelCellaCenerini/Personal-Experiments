@@ -1,10 +1,10 @@
 class Waterfall {
   constructor(image){
     this.x = 375;
-    this.y = -300;
+    this.y = -250;
     this.vx = 0;
     this.vy = 0;
-    this.speed = 0.05;
+    this.speed = 0.08;
     this.limit = 850;
     this.image = image;
     this.active = false;
