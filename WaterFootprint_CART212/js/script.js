@@ -9,6 +9,7 @@ CART212 Final Project
 
 let timerInstructions = 1;
 let timerButton = 2;
+let timerUserInput = 2;
 
 let waltz1 = undefined;
 
@@ -54,7 +55,7 @@ let cowImage = undefined;
 let cotton = undefined;
 let cottonImage = undefined;
 
-let state = `active` // Title, Animation, active, Passive
+let state = `animation1` // Title, Animation, active, Passive
 
 /**
 Description of preload
@@ -205,6 +206,16 @@ function draw() {
     }
   }
   else if (state === `passive`){
+
+  }
+  else if (state === `animation1`){
+    background(0);
+    document.getElementById("prova1").style.visibility = `visible`;
+  }
+  else if (state === `animation2`){
+
+  }
+  else if (state === `animation3`){
 
   }
   else if (state === `credits`){

@@ -20,3 +20,14 @@ body {
   background-color: #000000;
   /* cursor:none; */
 }
+
+#prova1{
+  position: relative;
+  visibility: hidden;
+  margin-top: 48vw;
+  align-items:center;
+}
+
+#image1{
+  margin-left: 50px;
+}
