@@ -8,7 +8,6 @@ CART212 Final Project
 */
 
 let timerInstructions = 1;
-let timerInstructions2 = 5;
 let timerButton = 2;
 
 let waltz1 = undefined;
@@ -33,7 +32,7 @@ let fadedText = {
   x: 375,
   y1: 115,
   y2: 145,
-  active: true
+  active: false
 }
 
 let highlight = {
@@ -46,8 +45,8 @@ let splash = undefined;
 let splashImage = undefined;
 
 // Score
-let highScore = undefined;
-let score = undefined;
+let score1 = undefined;
+let score2 = undefined;
 
 // Objects
 let cow = undefined;
@@ -95,6 +94,15 @@ function setup() {
   cow = new Product(cowImage);
   cotton = new Product(cottonImage);
 
+  // Scores
+  let stringA1 = `1KG  BEEF`;
+  let stringA2 = `+  15 000  LITRES`;
+  score1 = new HighScore(stringA1, stringA2);
+
+  let stringB1 = `1KG  BEEF`;
+  let stringB2 = `+  15 000  LITRES`;
+  score2 = new HighScore(stringB1, stringB2);
+
   // Waterfall
   waterfall = new Waterfall(waterfallImage);
 
@@ -134,25 +142,18 @@ function draw() {
     // Faded Score
     if (fadedText.active){
       push();
-      fill(255, 25);
+      fill(255, 50);
       textSize(26);
       text(`WHAT'S NEXT?`, fadedText.x, fadedText.y1);
       text(`+  MORE WATER!`, fadedText.x, fadedText.y2);
       pop();
     }
 
+    // Scores
+    // Cow
+    score1.displayHighScore();
+    score1.displayScore();
 
-    // Score
-    // push();
-    // fill(255);
-    // textSize(26);
-    // text(`HIGH SCORE`, width/2, 115);
-    // text(`+  HIGH SCORE`, width/2, 145);
-    // pop();
-
-    // High Score Blinking
-    // setInterval(highScoreBlinking, 2000);
-    // highScoreBlinking();
 
     triggerAnimation();
 
@@ -219,15 +220,6 @@ function titleText(){
   pop();
 }
 
-// function highScoreBlinking(){
-//   // Text
-//   push();
-//   fill(251, 167, 14);
-//   textSize(60);
-//   text(`HIGH SCORE`, width/2, 45);
-//   pop();
-// }
-
 function instructionsTimer(){
   if(frameCount % 60 === 0 && timerInstructions > 0){
     timerInstructions --;
@@ -243,6 +235,8 @@ function triggerAnimation(){
   if(cow.active){
   setTimeout( ()=>{
       cow.active = false;
+      score1.deactivate();
+      fadedText.active = true;
   }, 3000);
   }
 
@@ -252,6 +246,8 @@ function triggerAnimation(){
   if(cotton.active){
   setTimeout( ()=>{
     cotton.active = false;
+    score2.deactivate();
+    fadedText.active = true;
   }, 3000);
   }
 
@@ -283,10 +279,20 @@ function keyPressed(){
     // Cow
     if (userInputs.length < 2){
         cow.activate();
+        setTimeout(()=>{
+          score1.activeH = true;
+          score1.activeS = true;
+        }, 3000);
+
     }
 
     if (userInputs.length < 3 && userInputs.length > 1){
         cotton.activate();
+        setTimeout(()=>{
+          score1.activeH = true;
+          score1.activeS = true;
+          fadedText.active = false;
+        }, 3000);
     }
 
     // Waterfall
