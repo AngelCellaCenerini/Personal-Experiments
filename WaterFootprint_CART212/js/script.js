@@ -531,19 +531,6 @@ function keyPressed(){
 
     }
 
-    if ( keyCode === 13 && state === `animation1`){
-      state = `animation2`;
-    }
-    else if ( keyCode === 13 && state === `animation2`){
-      state = `animation3`;
-    }
-    else if ( keyCode === 13 && state === `animation3`){
-      state = `animation4`;
-    }
-    else if ( keyCode === 13 && state === `animation4`){
-      state = `credits`;
-    }
-
   }
 
 function keyReleased(){

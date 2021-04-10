@@ -21,7 +21,7 @@ class Drop {
 
     setTimeout( ()=>{
       this.active = false;
-    }, 8100);
+    }, 8090);
   }
 
   move(){
@@ -43,6 +43,8 @@ class Drop {
   }
 
   display(){
-    image(this.image, this.x, this.y);
+    if (this.active){
+      image(this.image, this.x, this.y);
+    }
   }
 }
