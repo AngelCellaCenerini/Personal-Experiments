@@ -225,16 +225,30 @@ function draw() {
   }
   else if (state === `animation2`){
     background(0);
-    windowResized();
     image(screenImage, width/6, height/2, 450, 378);
     image(screenImage, width/2, height/2, 450, 378);
     image(screenImage, 5*width/6, height/2, 450, 378);
   }
   else if (state === `animation3`){
     background(0);
+    image(screenImage, width/6, height/4, 375, 315);
+    image(screenImage, width/2, height/4, 375, 315);
+    image(screenImage, 5*width/6, height/4, 375, 315);
+    image(screenImage, width/6, 3*height/4, 375, 315);
+    image(screenImage, width/2, 3*height/4, 375, 315);
+    image(screenImage, 5*width/6, 3*height/4, 375, 315);
   }
   else if (state === `animation4`){
     background(0);
+    image(screenImage, width/4, height/6, 250, 210);
+    image(screenImage, width/2, height/6, 250, 210);
+    image(screenImage, 3*width/4, height/6, 250, 210);
+    image(screenImage, width/4, height/2, 250, 210);
+    image(screenImage, width/2, height/2, 250, 210);
+    image(screenImage, 3*width/4, height/2, 250, 210);
+    image(screenImage, width/4, 5*height/6, 250, 210);
+    image(screenImage, width/2, 5*height/6, 250, 210);
+    image(screenImage, 3*width/4, 5*height/6, 250, 210);
   }
   else if (state === `credits`){
 
