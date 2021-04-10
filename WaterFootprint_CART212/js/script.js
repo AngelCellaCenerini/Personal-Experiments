@@ -10,6 +10,12 @@ CART212 Final Project
 let timerInstructions = 1;
 let timerButton = 2;
 let timerUserInput = 2;
+let timerActive = 10;
+let timerPassive = 10;
+let timerAnimation1 = 1;
+let timerAnimation2 = 1;
+let timerAnimation3 = 1;
+let timerAnimation4 = 3;
 let timerScreen1 = 2;
 
 let waltz1 = undefined;
@@ -74,7 +80,7 @@ let fadingEffect = {
   active: false
 }
 
-let state = `animation1` // Title, Animation, active, Passive
+let state = `title` // Title, Animation, active, Passive
 
 /**
 Description of preload
@@ -150,10 +156,9 @@ function draw() {
 
 
   }
-  else if (state === `animation`){
-
-  }
   else if (state === `active`){
+
+    activeTimer();
 
     // User Platform
     push();
@@ -233,21 +238,24 @@ function draw() {
     }
   }
   else if (state === `passive`){
-
+    passiveTimer();
   }
   else if (state === `animation1`){
     windowResized();
+    animation1Timer();
     image(screenImage, width/4, height/2, 645, 542);
     image(screenImage, 3*width/4, height/2, 645, 542);
   }
   else if (state === `animation2`){
     background(0);
+    animation2Timer();
     image(screenImage, width/6, height/2, 450, 378);
     image(screenImage, width/2, height/2, 450, 378);
     image(screenImage, 5*width/6, height/2, 450, 378);
   }
   else if (state === `animation3`){
     background(0);
+    animation3Timer();
     image(screenImage, width/6, height/4, 375, 315);
     image(screenImage, width/2, height/4, 375, 315);
     image(screenImage, 5*width/6, height/4, 375, 315);
@@ -257,6 +265,7 @@ function draw() {
   }
   else if (state === `animation4`){
     background(0);
+    animation4Timer();
     image(screenImage, width/4, height/6, 250, 210);
     image(screenImage, width/2, height/6, 250, 210);
     image(screenImage, 3*width/4, height/6, 250, 210);
@@ -343,8 +352,59 @@ function triggerAnimation(){
 
 }
 
+function activeTimer(){
+  if(frameCount % 60 === 0 && timerActive > 0){
+    timerActive --;
+  }
+  if(timerActive === 0){
+   state = `passive`;
+ }
+}
+
+function passiveTimer(){
+  if(frameCount % 60 === 0 && timerPassive > 0){
+    timerPassive --;
+  }
+  if(timerPassive === 0){
+   state = `animation1`;
+ }
+}
+
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+}
+
+function animation1Timer(){
+  if(frameCount % 60 === 0 && timerAnimation1 > 0){
+    timerAnimation1 --;
+  }
+  if(timerAnimation1 === 0){
+   state = `animation2`;
+ }
+}
+function animation2Timer(){
+  if(frameCount % 60 === 0 && timerAnimation2 > 0){
+    timerAnimation2 --;
+  }
+  if(timerAnimation2 === 0){
+   state = `animation3`;
+ }
+}
+function animation3Timer(){
+  if(frameCount % 60 === 0 && timerAnimation3 > 0){
+    timerAnimation3 --;
+  }
+  if(timerAnimation3 === 0){
+   state = `animation4`;
+ }
+}
+function animation4Timer(){
+  if(frameCount % 60 === 0 && timerAnimation4 > 0){
+    timerAnimation4 --;
+  }
+  if(timerAnimation4 === 0){
+   state = `credits`;
+ }
 }
 
 function screen1Timer(){
@@ -405,7 +465,7 @@ function endingText(){
   textSize(45);
   text(`WATER  FOOTPRINT`, width/2, height/2);
   textSize(22);
-  text(`CART212  -  Angel Cella Cenerini`, width/2, 440);
+  text(`CART212 -  Angel  Cella  Cenerini`, width/2, 440);
   pop();
 }
 
