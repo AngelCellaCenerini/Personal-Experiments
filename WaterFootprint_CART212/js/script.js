@@ -213,7 +213,9 @@ function draw() {
     document.getElementById("prova1").style.visibility = `visible`;
   }
   else if (state === `animation2`){
-
+    background(0);
+    document.getElementById("prova1").style.visibility = `hidden`;
+    document.getElementById("prova2").style.visibility = `visible`;
   }
   else if (state === `animation3`){
 
@@ -320,6 +322,10 @@ function keyPressed(){
     //   waltz1.play();
     // }
 
+    }
+
+    if ( keyCode === 13 && state === `animation1`){
+      state = `animation2`;
     }
 
   }
