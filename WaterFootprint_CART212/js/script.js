@@ -64,6 +64,9 @@ let cowImage = undefined;
 let cotton = undefined;
 let cottonImage = undefined;
 
+// Messages
+let message = undefined;
+
 // Finale
 let screen1 = {
   active: false
@@ -144,6 +147,9 @@ function setup() {
 
   // Drop
   drop = new Drop(dropImage);
+
+  // Message
+  message = new Message();
 
 
 
@@ -245,6 +251,10 @@ function draw() {
       text(`ENTER  key  pressed`, width/2, 570);
       pop();
     }
+
+    // Message
+    message.update();
+
   }
   else if (state === `passive`){
     passiveTimer();
@@ -464,6 +474,13 @@ function coverPic(){
     30 L  per  day`, width/2, 5*height/6);
   text(`ITALY
     30 L  per  day`, 3*width/4, 5*height/6);
+  pop();
+}
+
+function displayAlerts(){
+  push();
+  fill(255);
+  rect();
   pop();
 }
 
