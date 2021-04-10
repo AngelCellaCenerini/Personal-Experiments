@@ -62,6 +62,18 @@ let screen1 = {
 }
 let screenImage = undefined;
 
+
+let fadingEffect = {
+  x: 0,
+  y: 0,
+  width: 800,
+  height: 700,
+  vx: 0,
+  vy: 0,
+  opacity: 255,
+  active: false
+}
+
 let state = `animation1` // Title, Animation, active, Passive
 
 /**
@@ -135,6 +147,7 @@ function draw() {
   if (state === `title`){
 
     titleText();
+
 
   }
   else if (state === `animation`){
@@ -259,8 +272,30 @@ function draw() {
   }
   else if (state === `credits`){
 
+    background(0);
+    endingText();
+    fadeIn();
+    setTimeout( ()=>{
+      fadingEffect.active = true;
+    }, 2000);
   }
 
+}
+
+function fadeIn(){
+
+  let fading = 0.5;
+
+  push();
+  fill(0, fadingEffect.opacity);
+  fadingEffect.x = width/2;
+  fadingEffect.y = height/2;
+  rect(fadingEffect.x, fadingEffect.y, fadingEffect.width, fadingEffect.height);
+  pop();
+
+ if (fadingEffect.active){
+  fadingEffect.opacity -= fading;
+  }
 }
 
 function titleText(){
@@ -363,6 +398,17 @@ function coverPic(){
   pop();
 }
 
+function endingText(){
+  // Text
+  push();
+  fill(255);
+  textSize(45);
+  text(`WATER  FOOTPRINT`, width/2, height/2);
+  textSize(22);
+  text(`CART212  -  Angel Cella Cenerini`, width/2, 440);
+  pop();
+}
+
 //
 function keyPressed(){
   if ( keyCode === 32 && state === `title`){
@@ -424,6 +470,9 @@ function keyPressed(){
     }
     else if ( keyCode === 13 && state === `animation3`){
       state = `animation4`;
+    }
+    else if ( keyCode === 13 && state === `animation4`){
+      state = `credits`;
     }
 
   }
