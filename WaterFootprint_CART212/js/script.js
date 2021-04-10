@@ -55,6 +55,9 @@ let cowImage = undefined;
 let cotton = undefined;
 let cottonImage = undefined;
 
+// Finale
+let screenImage = undefined;
+
 let state = `animation1` // Title, Animation, active, Passive
 
 /**
@@ -73,6 +76,10 @@ function preload() {
   cowImage = loadImage('assets/images/cow.gif');
   cottonImage = loadImage('assets/images/cotton.gif');
 
+  // Finale
+  screenImage = loadImage('assets/images/prova.gif');
+
+  // SFX
   waltz1 = loadSound('assets/sounds/bark.wav');
 
 }
@@ -85,7 +92,7 @@ function setup() {
 
   createCanvas(750, 630);
   noStroke();
-  noCursor();
+  // noCursor();
   textFont(myFont);
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
@@ -109,6 +116,9 @@ function setup() {
 
   // Splash
   splash = new Splash(splashImage);
+
+
+
 }
 
 
@@ -209,28 +219,22 @@ function draw() {
 
   }
   else if (state === `animation1`){
-    background(0);
-    document.getElementById("prova1").style.visibility = `visible`;
+    windowResized();
+    image(screenImage, width/4, height/2, 645, 542);
+    image(screenImage, 3*width/4, height/2, 645, 542);
   }
   else if (state === `animation2`){
     background(0);
-    document.getElementById("quarta").style.visibility = `hidden`;
-    document.getElementById("prova1").style.visibility = `hidden`;
-    document.getElementById("prova2").style.visibility = `visible`;
+    windowResized();
+    image(screenImage, width/6, height/2, 450, 378);
+    image(screenImage, width/2, height/2, 450, 378);
+    image(screenImage, 5*width/6, height/2, 450, 378);
   }
   else if (state === `animation3`){
     background(0);
-    document.getElementById("quarta").style.visibility = `hidden`;
-    document.getElementById("prova2").style.visibility = `hidden`;
-    document.getElementById("terza").style.visibility = `visible`;
-
   }
   else if (state === `animation4`){
     background(0);
-    document.getElementById("quarta").style.visibility = `hidden`;
-    document.getElementById("terza").style.visibility = `hidden`;
-    document.getElementById("quarta").style.visibility = `visible`;
-
   }
   else if (state === `credits`){
 
@@ -281,6 +285,10 @@ function triggerAnimation(){
   }
 
 
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
 
 //
