@@ -24,7 +24,8 @@ body {
 #prova1{
   visibility: hidden;
   margin: auto;
-  margin-top: 42vw;
+  margin-top: 47vw;
+  align-content: center;
 }
 #image1{
   margin-left: 50px;
@@ -34,11 +35,56 @@ body {
 #prova2{
   visibility: hidden;
   margin: auto;
-  margin-top: -30vw;
+  margin-top: -29vw;
 }
-#image2{
+.image2{
   margin-left: 40px;
 }
-#image3{
+
+#terza{
+  visibility: hidden;
+  margin: auto;
+  margin-top: -39vw;
+}
+/* .image3{
   margin-left: 40px;
 }
+#prova32{
+  visibility: hidden;
+  margin: auto;
+  margin-top: -80px;
+}
+.image3{
+  margin-left: 40px;
+} */
+
+
+#quarta{
+  visibility: hidden;
+  margin: auto;
+  margin-top: -42vw;
+}
+/* #prova4{
+  visibility: hidden;
+  margin: auto;
+  margin-top: -12vw;
+}
+.image3{
+  margin-left: 40px;
+}
+#prova42{
+  visibility: hidden;
+  margin: auto;
+  margin-top: -28vw;
+}
+.image3{
+  margin-left: 3px;
+}
+#prova43{
+  visibility: hidden;
+  margin: auto;
+  margin-top: 2px;
+}
+.image3{
+  margin-left: 3px;
+} */

@@ -214,10 +214,22 @@ function draw() {
   }
   else if (state === `animation2`){
     background(0);
+    document.getElementById("quarta").style.visibility = `hidden`;
     document.getElementById("prova1").style.visibility = `hidden`;
     document.getElementById("prova2").style.visibility = `visible`;
   }
   else if (state === `animation3`){
+    background(0);
+    document.getElementById("quarta").style.visibility = `hidden`;
+    document.getElementById("prova2").style.visibility = `hidden`;
+    document.getElementById("terza").style.visibility = `visible`;
+
+  }
+  else if (state === `animation4`){
+    background(0);
+    document.getElementById("quarta").style.visibility = `hidden`;
+    document.getElementById("terza").style.visibility = `hidden`;
+    document.getElementById("quarta").style.visibility = `visible`;
 
   }
   else if (state === `credits`){
@@ -326,6 +338,12 @@ function keyPressed(){
 
     if ( keyCode === 13 && state === `animation1`){
       state = `animation2`;
+    }
+    else if ( keyCode === 13 && state === `animation2`){
+      state = `animation3`;
+    }
+    else if ( keyCode === 13 && state === `animation3`){
+      state = `animation4`;
     }
 
   }
