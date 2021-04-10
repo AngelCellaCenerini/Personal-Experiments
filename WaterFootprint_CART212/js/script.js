@@ -10,6 +10,7 @@ CART212 Final Project
 let timerInstructions = 1;
 let timerButton = 2;
 let timerUserInput = 2;
+let timerScreen1 = 2;
 
 let waltz1 = undefined;
 
@@ -56,6 +57,9 @@ let cotton = undefined;
 let cottonImage = undefined;
 
 // Finale
+let screen1 = {
+  active: false
+}
 let screenImage = undefined;
 
 let state = `animation1` // Title, Animation, active, Passive
@@ -249,6 +253,9 @@ function draw() {
     image(screenImage, width/4, 5*height/6, 250, 210);
     image(screenImage, width/2, 5*height/6, 250, 210);
     image(screenImage, 3*width/4, 5*height/6, 250, 210);
+
+    screen1Timer();
+    coverPic();
   }
   else if (state === `credits`){
 
@@ -303,6 +310,57 @@ function triggerAnimation(){
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
+}
+
+function screen1Timer(){
+  if(frameCount % 60 === 0 && timerScreen1 > 0){
+    timerScreen1 --;
+  }
+  if(timerScreen1 === 0){
+   screen1.active = true;
+ }
+}
+
+function coverPic(){
+  push();
+  fill(30);
+  if (screen1.active){
+    rect( width/4, height/6, 250, 210);
+  }
+  rect(width/2, height/6, 250, 210);
+  rect(3*width/4, height/6, 250, 210);
+  rect(width/4, height/2, 250, 210);
+  rect(width/2, height/2, 250, 210);
+  rect(3*width/4, height/2, 250, 210);
+  rect(width/4, 5*height/6, 250, 210);
+  rect(width/2, 5*height/6, 250, 210);
+  rect(3*width/4, 5*height/6, 250, 210);
+
+
+  // Text
+  fill(255);
+  textSize(32);
+  if (screen1.active){
+    text(`ITALY
+      30 L  per  day`,  width/4, height/6);
+  }
+  text(`ITALY
+    30 L  per  day`, width/2, height/6);
+  text(`ITALY
+    30 L  per  day`, 3*width/4, height/6);
+  text(`ITALY
+    30 L  per  day`, width/4, height/2);
+  text(`ITALY
+    30 L  per  day`, width/2, height/2);
+  text(`ITALY
+    30 L  per  day`, 3*width/4, height/2);
+  text(`ITALY
+    30 L  per  day`, width/4, 5*height/6);
+  text(`ITALY
+    30 L  per  day`, width/2, 5*height/6);
+  text(`ITALY
+    30 L  per  day`, 3*width/4, 5*height/6);
+  pop();
 }
 
 //
