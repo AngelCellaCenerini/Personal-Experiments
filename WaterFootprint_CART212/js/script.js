@@ -10,7 +10,7 @@ CART212 Final Project
 let timerInstructions = 1;
 let timerButton = 2;
 let timerUserInput = 2;
-let timerActive = 10;
+let timerActive = 30;
 let timerPassive = 10;
 let timerAnimation1 = 1;
 let timerAnimation2 = 1;
@@ -51,6 +51,8 @@ let waterfall = undefined;
 let waterfallImage = undefined;
 let splash = undefined;
 let splashImage = undefined;
+let drop = undefined;
+let dropImage = undefined;
 
 // Score
 let score1 = undefined;
@@ -93,6 +95,7 @@ function preload() {
   avatar = loadImage('assets/images/clown.png');
   waterfallImage = loadImage('assets/images/waterfall.gif');
   splashImage = loadImage('assets/images/splash2.gif');
+  dropImage = loadImage('assets/images/goccia.png');
 
   // Objects
   cowImage = loadImage('assets/images/cow.gif');
@@ -138,6 +141,9 @@ function setup() {
 
   // Splash
   splash = new Splash(splashImage);
+
+  // Drop
+  drop = new Drop(dropImage);
 
 
 
@@ -199,6 +205,9 @@ function draw() {
 
     // Splash
     splash.update();
+
+    // Drop
+    drop.update();
 
     // Black Border
     push();
