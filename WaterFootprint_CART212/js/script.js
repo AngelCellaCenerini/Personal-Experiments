@@ -548,6 +548,7 @@ function keyPressed(){
     // Reset Command
     instructions.active = false;
     timerInstructions = 5;
+
     // Start Button
     if (keyIsPressed && button2.active === false){
       button.active = true;
@@ -586,17 +587,13 @@ function keyPressed(){
     // }
 
     }
-    else if (keyCode === 8 && state === `active`){
+    else if (keyCode === 8 && state === `active` && instructions2.active === true){
       // Reset Stop Command
       instructions2.active = false;
-      timerInstructions2 = 8;
+      timerInstructions2 = 10;
+      timerInstructions = 3;
       button2.active = true;
 
-      //
-      // Start Button 2
-      // if (keyIsPressed){
-      //
-      // }
     }
 
   }
@@ -607,5 +604,6 @@ function keyReleased(){
   }
   else if (state === `active` && button2.active === true){
     button2.active = false;
+    timerInstructions = 4;
   }
 }
