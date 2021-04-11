@@ -2,7 +2,8 @@ class Message{
   constructor(){
     this.x = 375;
     this.y = -80;
-    this.string = `Only 3% of the world’s water is fresh water, 2/3 of which tucked away in frozen glaciers.`;
+    this.string = `Only 3% of the world’s water is fresh water,
+    2/3 of which tucked away in frozen glaciers.`;
     this.vx = 0;
     this.vy = 0;
     this.speed = 7;
@@ -58,7 +59,7 @@ class Message{
 
       this.vy = this.speed;
 
-      if(this.y > 35){
+      if(this.y > 40){
         this.vy = 0;
         this.speed = 0;
         this.duration++;
@@ -72,10 +73,12 @@ class Message{
   display(){
     if (this.active){
       push();
-      fill(139, 217, 199, 180);
-      rect(this.x, this.y, 250, 60);
+      fill(139, 217, 199, 160);
+      rect(this.x, this.y, 500, 70);
       fill(255);
-      textSize(18);
+      textSize(16);
+      textStyle(BOLD);
+      textFont(`Courier`);
       text(this.string, this.x, this.y);
       pop();
     }
