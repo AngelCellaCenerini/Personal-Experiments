@@ -10,7 +10,8 @@ CART212 Final Project
 let timerInstructions = 1;
 let timerInstructions2 = 8;
 let timerUserInput = 2;
-let timerActive = 30;
+let timerActive = 80;
+let timerInterruption = 3;
 let timerPassive = 10;
 let timerAnimation1 = 1;
 let timerAnimation2 = 1;
@@ -26,6 +27,9 @@ let avatar = undefined;
 
 let userInput = undefined;
 let userInputs = [];
+
+let stopCommand = undefined;
+let stopCommands = [];
 
 
 let instructions = {
@@ -287,6 +291,10 @@ function draw() {
     message2.update();
 
   }
+  else if (state === `interruption`){
+    interruptionTimer();
+    console.log(timerInterruption);
+  }
   else if (state === `passive`){
     passiveTimer();
   }
@@ -416,6 +424,17 @@ function activeTimer(){
   }
   if(timerActive === 0){
    state = `passive`;
+ }
+}
+
+function interruptionTimer(){
+  if(frameCount % 60 === 0 && timerInterruption > 0){
+    timerInterruption --;
+  }
+  if(timerInterruption === 0){
+      timerInterruption = 2;
+      state = `active`;
+
  }
 }
 
@@ -593,6 +612,14 @@ function keyPressed(){
       timerInstructions2 = 10;
       timerInstructions = 3;
       button2.active = true;
+      setTimeout( ()=>{
+        if(stopCommands.length < 4){
+          state = `interruption`;
+        }
+      }, 1000);
+
+      // Keep Track of Inputs
+      stopCommands.push(stopCommand);
 
     }
 
