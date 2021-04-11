@@ -11,7 +11,7 @@ let timerInstructions = 1;
 let timerInstructions2 = 8;
 let timerUserInput = 2;
 let timerActive = 80;
-let timerInterruption = 3;
+let timerInterruption = 4;
 let timerPassive = 10;
 let timerAnimation1 = 1;
 let timerAnimation2 = 1;
@@ -63,6 +63,7 @@ let waterfallImage = undefined;
 let splash = undefined;
 let splashImage = undefined;
 let drop = undefined;
+let drop2 = undefined;
 let dropImage = undefined;
 
 // Score
@@ -157,8 +158,9 @@ function setup() {
   // Splash
   splash = new Splash(splashImage);
 
-  // Drop
+  // Drops
   drop = new Drop(dropImage);
+  drop2 = new Drop(dropImage);
 
   // Message
   message = new Message();
@@ -293,7 +295,45 @@ function draw() {
   }
   else if (state === `interruption`){
     interruptionTimer();
-    console.log(timerInterruption);
+
+    // User Platform
+    push();
+    fill(139, 217, 199);
+    rect(120, 290, 75, 18);
+    pop();
+
+    // Avatar
+    image(avatar, 120, 240);
+
+    // Lights
+    image(lights, width/2, 155);
+
+    // Faded Score
+      push();
+      fill(255, 50);
+      textSize(26);
+      text(`OH`, fadedText.x, fadedText.y1);
+      text(`IT  STOPPED`, fadedText.x, fadedText.y2);
+      pop();
+
+      // Drop
+      drop2.timing = 200;
+      drop2.update();
+
+      // Black Border
+      push();
+      fill(30);
+      rect(width/2, 632, 250, 220);
+      pop();
+
+      // Base
+      push();
+      noFill();
+      stroke(255);
+      strokeWeight(5);
+      rect(width/2, 370, 200, 300);
+      pop();
+
   }
   else if (state === `passive`){
     passiveTimer();
@@ -632,7 +672,13 @@ function keyPressed(){
 
 function keyReleased(){
   if (state === `active` && button.active === true){
-    button.active = false;
+    if(stopCommands.length < 3){
+      button.active = false;
+    }
+    else{
+      return;
+    }
+
   }
   else if (state === `active` && button2.active === true){
     button2.active = false;

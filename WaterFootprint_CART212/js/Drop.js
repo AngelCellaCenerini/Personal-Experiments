@@ -7,13 +7,14 @@ class Drop {
     this.speed = 0.08;
     this.limit = 600;
     this.image = image;
-    this.active = false
+    this.active = false;
+    this.timing = 2000;
   }
 
   update(){
     setTimeout( ()=>{
       this.active = true;
-    }, 2000);
+    }, this.timing);
 
     this.move();
     this.reset();
