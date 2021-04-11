@@ -19,7 +19,9 @@ let timerAnimation3 = 1;
 let timerAnimation4 = 3;
 let timerScreen1 = 2;
 
-let waltz1 = undefined;
+let waltzIntro = undefined;
+let waltzInterruption = undefined;
+let waltz = undefined;
 
 let myFont = undefined;
 let lights = undefined;
@@ -121,7 +123,9 @@ function preload() {
   screenImage = loadImage('assets/images/prova.gif');
 
   // SFX
-  waltz1 = loadSound('assets/sounds/bark.wav');
+  waltzIntro = loadSound('assets/sounds/intro.mp3');
+  waltzInterruption = loadSound('assets/sounds/interruptionB.mp3');
+  waltz = loadSound('assets/sounds/soundtrack.mp3');
 
 }
 
@@ -228,7 +232,7 @@ function draw() {
     splash.update();
 
     // Drop
-    drop.update();
+    // drop.update();
 
     // Black Border
     push();
@@ -294,7 +298,12 @@ function draw() {
 
   }
   else if (state === `interruption`){
+    // waltz.pause();
     interruptionTimer();
+
+    // if(waltz.isPlaying){
+    //   waltz.pause();
+    // }
 
     // User Platform
     push();
@@ -422,6 +431,22 @@ function instructionsTimer(){
   }
   if(timerInstructions === 0){
    instructions.active = true;
+
+
+
+   // if(userInputs.length > 1){
+   //
+   //   // Add Input
+   //   userInputs.push(userInput);
+   //   // Waterfall
+   //   waterfall.active = true;
+   //
+   //   // Splash
+   //   setTimeout( ()=>{
+   //       splash.active = true;
+   //   }, 2200);
+   // }
+
  }
 }
 function instructionsTimer2(){
@@ -479,6 +504,10 @@ function interruptionTimer(){
   if(timerInterruption === 0){
       timerInterruption = 2;
       state = `active`;
+      if (waltzInterruption.isPlaying){
+        waltzInterruption.stop();
+      }
+      playMusic();
 
  }
 }
@@ -602,20 +631,42 @@ function endingText(){
 function keyPressed(){
   if ( keyCode === 32 && state === `title`){
     state = `active`;
+    waltzIntro.loop();
   }
 
   if ( keyCode === 13 && state === `active`){
 
-    // Add Input
-    userInputs.push(userInput);
+    // Sound
+    if (waltzIntro.isPlaying){
+      waltzIntro.stop();
+    }
+    if(userInputs.length < 1){
+      playMusic();
+    }
+
+
+    // if(userInputs.length < 0){
+      // Add Input
+      userInputs.push(userInput);
+      // Waterfall
+      waterfall.active = true;
+
+      // Splash
+      setTimeout( ()=>{
+          splash.active = true;
+      }, 2200);
+    // }
+
 
     // Reset Command
     instructions.active = false;
     timerInstructions = 5;
 
     // Start Button
-    if (keyIsPressed && button2.active === false){
+    if (keyIsPressed && button2.active === false && instructions2.active === false){
       button.active = true;
+      // instructions2.active = false;
+      // timerInstructions2 = 8;
     }
 
     // Cow
@@ -637,18 +688,14 @@ function keyPressed(){
         }, 3000);
     }
 
-    // Waterfall
-    waterfall.active = true;
+    // // Waterfall
+    // waterfall.active = true;
+    //
+    // // Splash
+    // setTimeout( ()=>{
+    //     splash.active = true;
+    // }, 2200);
 
-    // Splash
-    setTimeout( ()=>{
-        splash.active = true;
-    }, 2200);
-
-    // Play
-    // if (!waltz1.isPlaying()){
-    //   waltz1.play();
-    // }
 
     }
     else if (keyCode === 8 && state === `active` && instructions2.active === true){
@@ -660,6 +707,9 @@ function keyPressed(){
       setTimeout( ()=>{
         if(stopCommands.length < 4){
           state = `interruption`;
+          if(waltz.isPlaying){
+            waltzInterruption.play();
+          }
         }
       }, 1000);
 
@@ -683,5 +733,14 @@ function keyReleased(){
   else if (state === `active` && button2.active === true){
     button2.active = false;
     timerInstructions = 4;
+  }
+}
+
+function playMusic(){
+  if(state === `active`){
+    waltz.loop();
+  }
+  else if(state === `interruption`){
+    waltz.pause();
   }
 }
