@@ -66,6 +66,7 @@ let cottonImage = undefined;
 
 // Messages
 let message = undefined;
+let message2 = undefined;
 
 // Finale
 let screen1 = {
@@ -150,6 +151,7 @@ function setup() {
 
   // Message
   message = new Message();
+  message2 = new MessageS();
 
 
 
@@ -254,6 +256,7 @@ function draw() {
 
     // Message
     message.update();
+    message2.update();
 
   }
   else if (state === `passive`){

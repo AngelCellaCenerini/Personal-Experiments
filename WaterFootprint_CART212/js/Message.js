@@ -1,51 +1,54 @@
 class Message{
   constructor(){
     this.x = 375;
-    this.y = -100;
-    this.string = `The world is fucked up`;
+    this.y = -80;
+    this.string = `Only 3% of the world’s water is fresh water, 2/3 of which tucked away in frozen glaciers.`;
     this.vx = 0;
     this.vy = 0;
     this.speed = 7;
-    this.active = true;
+    this.active = false;
+    this.switch = 2000;
+    this.duration = 0;
   }
 
   update(){
-    // this.activate();
-    // this.deactivate();
-    this.stop();
-    // this.reset();
+    this.activate();
+    // this.stop();
     this.move();
     this.display();
-    // this.reset();
+    this.reset();
   }
 
-  // activate(){
-  //   // setTimeout( ()=>{
-  //     this.active = true;
-  //   // }, 3000);
-  // }
-
-  // deactivate(){
-  //   setTimeout( ()=>{
-  //     this.active = false;
-  //     this.y = -100;
-  //     this.speed = 3;
-  //   }, 3000);
-  // }
-
-  stop(){
-    if(this.y > 32){
-      this.vy = 0;
-      this.speed = 0;
-      this.reset();
-    }
+  activate(){
+    setTimeout( ()=>{
+      this.active = true;
+    }, this.switch);
   }
+
+
+  // stop(){
+  //   if (this.active){
+  //     if(this.y > 35){
+  //       this.vy = 0;
+  //       this.speed = 0;
+  //       // setTimeout( ()=>{
+  //         this.reset();
+  //         // this.active = false;
+  //         // displayedAlerts.push(displayedAlert);
+  //       // }, 3000);
+  //     }
+  //   }
+  // }
 
   reset(){
-    setTimeout( ()=>{
-      this.y = -100;
-      this.speed = 7;
-  }, 3000);
+    if (this.active){
+    //   setTimeout( ()=>{
+    //     this.active = false;
+    // }, this.switch2);
+    // if(this.duration > 2*60){
+    //   this.active = false;
+    // }
+    }
 }
 
   move(){
@@ -55,21 +58,21 @@ class Message{
 
       this.vy = this.speed;
 
-
-      // if(this.y > 2){
-      //   this.vy = 0;
-      //   this.speed = 0;
-      // }
-      // else{
-      //     this.vy = this.speed;
-      // }
+      if(this.y > 35){
+        this.vy = 0;
+        this.speed = 0;
+        this.duration++;
+        if(this.duration > 4*60){
+          this.active = false;
+        }
+      }
     }
   }
 
   display(){
     if (this.active){
       push();
-      fill(139, 217, 199, 200);
+      fill(139, 217, 199, 180);
       rect(this.x, this.y, 250, 60);
       fill(255);
       textSize(18);
