@@ -389,7 +389,12 @@ function instructionsTimer2(){
     timerInstructions2 --;
   }
   if(timerInstructions2 === 0){
-   instructions2.active = true;
+    if(stopCommands.length < 3){
+      instructions2.active = true;
+    }
+    else{
+      return
+    }
  }
 }
 
