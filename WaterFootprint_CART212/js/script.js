@@ -8,7 +8,7 @@ CART212 Final Project
 */
 
 let timerInstructions = 1;
-let timerButton = 2;
+let timerInstructions2 = 8;
 let timerUserInput = 2;
 let timerActive = 30;
 let timerPassive = 10;
@@ -32,7 +32,14 @@ let instructions = {
   active: false
 }
 
+let instructions2 = {
+  active: false
+}
+
 let button = {
+  active: false
+}
+let button2 = {
   active: false
 }
 
@@ -232,12 +239,23 @@ function draw() {
     pop();
 
     instructionsTimer();
+    instructionsTimer2();
 
-    if (instructions.active){
+    if (instructions.active === true && instructions2.active === false){
       push();
       fill(255);
       textSize(23);
       text(`Press  the  ENTER  key!`, width/2, 574);
+      pop();
+    }
+
+    // Stop Command
+    if (instructions2.active){
+      push();
+      fill(255);
+      textSize(23);
+      text(`Press  the  BACKSPACE  key
+      to  stop  the  water  consumption!`, width/2, 574);
       pop();
     }
 
@@ -251,6 +269,16 @@ function draw() {
       fill(0);
       textSize(23);
       text(`ENTER  key  pressed`, width/2, 570);
+      pop();
+    }
+
+    if (button2.active){
+      push();
+      fill(255);
+      rect(width/2, 574, 230, 30);
+      fill(0);
+      textSize(23);
+      text(`BACKSPACE  key  pressed`, width/2, 570);
       pop();
     }
 
@@ -346,6 +374,14 @@ function instructionsTimer(){
   }
   if(timerInstructions === 0){
    instructions.active = true;
+ }
+}
+function instructionsTimer2(){
+  if(frameCount % 60 === 0 && timerInstructions2 > 0){
+    timerInstructions2 --;
+  }
+  if(timerInstructions2 === 0){
+   instructions2.active = true;
  }
 }
 
@@ -513,7 +549,7 @@ function keyPressed(){
     instructions.active = false;
     timerInstructions = 5;
     // Start Button
-    if (keyIsPressed){
+    if (keyIsPressed && button2.active === false){
       button.active = true;
     }
 
@@ -550,11 +586,26 @@ function keyPressed(){
     // }
 
     }
+    else if (keyCode === 8 && state === `active`){
+      // Reset Stop Command
+      instructions2.active = false;
+      timerInstructions2 = 8;
+      button2.active = true;
+
+      //
+      // Start Button 2
+      // if (keyIsPressed){
+      //
+      // }
+    }
 
   }
 
 function keyReleased(){
-  if (state === `active`){
+  if (state === `active` && button.active === true){
     button.active = false;
+  }
+  else if (state === `active` && button2.active === true){
+    button2.active = false;
   }
 }
