@@ -67,6 +67,9 @@ let splashImage = undefined;
 let drop = undefined;
 let drop2 = undefined;
 let dropImage = undefined;
+let waves = undefined;
+let waveRImage = undefined;
+let waveLImage = undefined;
 
 // Score
 let score1 = undefined;
@@ -114,6 +117,8 @@ function preload() {
   waterfallImage = loadImage('assets/images/waterfall.gif');
   splashImage = loadImage('assets/images/splash2.gif');
   dropImage = loadImage('assets/images/goccia.png');
+  waveRImage = loadImage('assets/images/waveR.gif');;
+  waveLImage = loadImage('assets/images/waveL.gif');;
 
   // Objects
   cowImage = loadImage('assets/images/cow.gif');
@@ -165,6 +170,9 @@ function setup() {
   // Drops
   drop = new Drop(dropImage);
   drop2 = new Drop(dropImage);
+
+  // Side Waves
+  waves = new Wave(waveLImage, waveRImage);
 
   // Message
   message = new Message();
@@ -295,6 +303,9 @@ function draw() {
     // Message
     message.update();
     message2.update();
+
+    // Side Waves
+    waves.update();
 
   }
   else if (state === `interruption`){

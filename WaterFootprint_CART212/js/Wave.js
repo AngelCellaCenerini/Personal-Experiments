@@ -1,34 +1,31 @@
 class Wave{
-  constructor(image){
-    this.x1 = 372;
-    this.x2 = 372;
-    this.x3 = 372;
-    this.x4 = 372;
-    this.y = 508;
-    this.y2 = 508;
+  constructor(image1, image2){
+    this.x1 = 200;
+    this.x2 = 560;
+    this.y = 380;
     this.active = false;
-    this.image1 = image;
-    this.image2 = image;
-    this.duration = 0;
+    this.image1 = image1;
+    this.image2 = image2;
   }
 
   update(){
+    this.activate();
     this.display();
-    this.reset();
   }
+
+  activate(){
+      setTimeout( ()=>{
+        this.active = true;
+      }, 2000);
+    }
 
   display(){
     if (this.active){
-      image(this.image, this.x, this.y, 230);
+      image(this.image1, this.x1, this.y);
+      image(this.image2, this.x2, this.y);
     }
   }
 
 
-  reset(){
-    if (this.active){
-      setTimeout( ()=>{
-        this.active = false;
-      }, 790);
-      }
-    }
+
   }
