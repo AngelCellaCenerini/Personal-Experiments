@@ -35,10 +35,6 @@ let stopCommand = undefined;
 let stopCommands = [];
 
 
-let interruption = {
-  active: false
-}
-
 let instructions = {
   active: false
 }
@@ -321,27 +317,61 @@ function draw() {
     // Side Waves
     waves.update();
 
-    // interruption
-    if(interruption.active){
-      displayInterruption();
-    }
-
   }
   else if (state === `interruption`){
     // waltz.pause();
     // interruptionTimer();
 
-    //
-    // displayInterruption();
+    setTimeout( ()=>{
+      switchToActiveState();
+    }, 2000);
 
 
 
-    // playMusic();
+    playMusic();
     // waltz.pause();
 
     // if(waltz.isPlaying){
     //   waltz.pause();
     // }
+
+    // User Platform
+    push();
+    fill(139, 217, 199);
+    rect(120, 290, 75, 18);
+    pop();
+
+    // Avatar
+    image(avatar, 120, 240);
+
+    // Lights
+    image(lights, width/2, 155);
+
+    // Faded Score
+      push();
+      fill(255, 50);
+      textSize(26);
+      text(`OH`, fadedText.x, fadedText.y1);
+      text(`IT  STOPPED`, fadedText.x, fadedText.y2);
+      pop();
+
+      // Drop
+      drop2.timing = 200;
+      drop2.update();
+
+      // Black Border
+      push();
+      fill(30);
+      rect(width/2, 632, 250, 220);
+      pop();
+
+      // Base
+      push();
+      noFill();
+      stroke(255);
+      strokeWeight(5);
+      rect(width/2, 370, 200, 300);
+      pop();
 
   }
   else if (state === `passive`){
@@ -499,73 +529,34 @@ function activeTimer(){
  }
 }
 
-function displayInterruption(){
+function switchToActiveState(){
 
-  // Redraw Canvas
-  push();
-  fill(30);
-  rect(width/2, height/2, 750, 630);
-  pop();
+  setTimeout( ()=>{
+    state = `active`;
+    // playMusic();
+    // timerInterruption = 2;
+    if (waltzInterruption.isPlaying){
+      waltzInterruption.stop();
+    }
+  }, 2000);
 
-  // User Platform
-  push();
-  fill(139, 217, 199);
-  rect(120, 290, 75, 18);
-  pop();
-
-  // Avatar
-  image(avatar, 120, 240);
-
-  // Lights
-  image(lights, width/2, 155);
-
-  // Faded Score
-    push();
-    fill(255, 50);
-    textSize(26);
-    text(`OH`, fadedText.x, fadedText.y1);
-    text(`IT  STOPPED`, fadedText.x, fadedText.y2);
-    pop();
-
-    // Drop
-    drop2.timing = 200;
-    drop2.update();
-
-    // Black Border
-    push();
-    fill(30);
-    rect(width/2, 632, 250, 220);
-    pop();
-
-    // Base
-    push();
-    noFill();
-    stroke(255);
-    strokeWeight(5);
-    rect(width/2, 370, 200, 300);
-    pop();
-
-    // Return to Active
-    setTimeout( ()=>{
-      interruption.active = false;
-    }, 4000);
 
 }
 
-// function interruptionTimer(){
-//   if(frameCount % 60 === 0 && timerInterruption > 0){
-//     timerInterruption --;
-//   }
-//   if(timerInterruption === 0){
-//       state = `active`;
-//       playMusic();
-//       // timerInterruption = 2;
-//       if (waltzInterruption.isPlaying){
-//         waltzInterruption.stop();
-//       }
-//
-//  }
-// }
+function interruptionTimer(){
+  if(frameCount % 60 === 0 && timerInterruption > 0){
+    timerInterruption --;
+  }
+  if(timerInterruption === 0){
+      state = `active`;
+      playMusic();
+      // timerInterruption = 2;
+      if (waltzInterruption.isPlaying){
+        waltzInterruption.stop();
+      }
+
+ }
+}
 
 function passiveTimer(){
   if(frameCount % 60 === 0 && timerPassive > 0){
@@ -695,9 +686,10 @@ function keyPressed(){
     if (waltzIntro.isPlaying){
       waltzIntro.stop();
     }
-    if(userInputs.length < 1){
-      playMusic();
-    }
+    // if(userInputs.length < 1){
+      // playMusic();
+      waltz.loop();
+    // }
 
 
     // if(userInputs.length < 0){
@@ -759,11 +751,14 @@ function keyPressed(){
       timerInstructions2 = 10;
       timerInstructions = 3;
       button2.active = true;
-
       setTimeout( ()=>{
         if(stopCommands.length < 4){
-        interruption.active = true;
-        playMusic();
+          state = `interruption`;
+          // interruptionTimer();
+          // timerInterruption = 2;
+          if(waltz.isPlaying){
+            waltzInterruption.play();
+          }
         }
       }, 1000);
 
@@ -791,16 +786,10 @@ function keyReleased(){
 }
 
 function playMusic(){
-    if(interruption.active){
-      waltz.pause();
-      waltzInterruption.play();
-    }
-    if(!interruption.active){
-      waltz.loop();
-      waltzInterruption.pause();
-    }
+  if(state === `active`){
+    waltz.loop();
+  }
+  else if(state === `interruption`){
+    waltz.pause();
+  }
 }
-//
-// function stopMusic(){
-//     waltz.pause();
-// }

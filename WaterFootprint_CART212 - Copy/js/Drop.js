@@ -22,7 +22,7 @@ class Drop {
 
     setTimeout( ()=>{
       this.active = false;
-    }, 10000);
+    }, 8090);
   }
 
   move(){
