@@ -7,8 +7,9 @@ Angel Cella Cenerini
 CART212 Final Project
 */
 
-let timerInstructions = 1;
-let timerInstructions2 = 8;
+let timerInstructions = 4;
+// let timerInstructions2 = 30;
+let timerInstructions2 = 5;
 let timerUserInput = 2;
 let timerActive = 80;
 let timerInterruption = 4;
@@ -319,7 +320,16 @@ function draw() {
   }
   else if (state === `interruption`){
     // waltz.pause();
-    interruptionTimer();
+    // interruptionTimer();
+
+    setTimeout( ()=>{
+      switchToActiveState();
+    }, 2000);
+
+
+
+    playMusic();
+    // waltz.pause();
 
     // if(waltz.isPlaying){
     //   waltz.pause();
@@ -451,6 +461,8 @@ function instructionsTimer(){
   }
   if(timerInstructions === 0){
    instructions.active = true;
+   // instructions2.active = false;
+   // timerInstructions2 = 8;
 
 
 
@@ -517,17 +529,31 @@ function activeTimer(){
  }
 }
 
+function switchToActiveState(){
+
+  setTimeout( ()=>{
+    state = `active`;
+    // playMusic();
+    // timerInterruption = 2;
+    if (waltzInterruption.isPlaying){
+      waltzInterruption.stop();
+    }
+  }, 2000);
+
+
+}
+
 function interruptionTimer(){
   if(frameCount % 60 === 0 && timerInterruption > 0){
     timerInterruption --;
   }
   if(timerInterruption === 0){
-      timerInterruption = 2;
       state = `active`;
+      playMusic();
+      // timerInterruption = 2;
       if (waltzInterruption.isPlaying){
         waltzInterruption.stop();
       }
-      playMusic();
 
  }
 }
@@ -660,9 +686,10 @@ function keyPressed(){
     if (waltzIntro.isPlaying){
       waltzIntro.stop();
     }
-    if(userInputs.length < 1){
-      playMusic();
-    }
+    // if(userInputs.length < 1){
+      // playMusic();
+      waltz.loop();
+    // }
 
 
     // if(userInputs.length < 0){
@@ -680,7 +707,7 @@ function keyPressed(){
 
     // Reset Command
     instructions.active = false;
-    timerInstructions = 5;
+    timerInstructions = 7;
 
     // Start Button
     if (keyIsPressed && button2.active === false && instructions2.active === false){
@@ -727,6 +754,8 @@ function keyPressed(){
       setTimeout( ()=>{
         if(stopCommands.length < 4){
           state = `interruption`;
+          // interruptionTimer();
+          // timerInterruption = 2;
           if(waltz.isPlaying){
             waltzInterruption.play();
           }
@@ -741,7 +770,7 @@ function keyPressed(){
   }
 
 function keyReleased(){
-  if (state === `active` && button.active === true){
+  if (state === `active` && button.active === true && keyCode === 13){
     if(stopCommands.length < 3){
       button.active = false;
     }
@@ -750,7 +779,7 @@ function keyReleased(){
     }
 
   }
-  else if (state === `active` && button2.active === true){
+  else if (state === `active` && button2.active === true && keyCode === 8){
     button2.active = false;
     timerInstructions = 4;
   }

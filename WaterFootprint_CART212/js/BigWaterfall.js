@@ -20,7 +20,7 @@ class BigWaterfall{
   activate(){
       setTimeout( ()=>{
         this.active = true;
-      }, 2000);
+      }, 20000);
     }
 
     move(){

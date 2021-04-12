@@ -16,7 +16,7 @@ class Wave{
   activate(){
       setTimeout( ()=>{
         this.active = true;
-      }, 4000);
+      }, 24000);
     }
 
   display(){
