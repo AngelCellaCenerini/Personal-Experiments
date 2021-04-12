@@ -20,9 +20,9 @@ class Drop {
     this.reset();
     this.display();
 
-    setTimeout( ()=>{
-      this.active = false;
-    }, 10000);
+    // setTimeout( ()=>{
+    //   this.active = false;
+    // }, 10000);
   }
 
   move(){

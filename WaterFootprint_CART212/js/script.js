@@ -137,8 +137,8 @@ function preload() {
 
   // SFX
   waltzIntro = loadSound('assets/sounds/intro.mp3');
-  waltzInterruption = loadSound('assets/sounds/interruptionB.mp3');
-  waltz = loadSound('assets/sounds/soundtrack.mp3');
+  waltzInterruption = createAudio('assets/sounds/interruptionB.mp3');
+  waltz = createAudio('assets/sounds/soundtrack.mp3');
 
 }
 
@@ -545,12 +545,28 @@ function displayInterruption(){
     rect(width/2, 370, 200, 300);
     pop();
 
-    // Return to Active
-    setTimeout( ()=>{
-      interruption.active = false;
-      console.log(interruption.active);
-    }, 4000);
+    // // Return to Active
+    // setTimeout( ()=>{
+    //   interruption.active = false;
+    //   console.log(interruption.active);
+    // }, 4000);
 
+}
+
+function returnToActive(){
+  // Return to Active
+
+  setTimeout( ()=>{
+    interruption.active = false;
+    // if(waltzInterruption.isPlaying){
+      waltzInterruption.stop();
+      waltz.loop();
+    // }
+    // playMusic();
+
+
+    console.log(interruption.active);
+  }, 4000);
 }
 
 // function interruptionTimer(){
@@ -697,7 +713,8 @@ function keyPressed(){
       waltzIntro.stop();
     }
     if(userInputs.length < 1){
-      playMusic();
+      // playMusic();
+      waltz.loop();
     }
 
 
@@ -755,31 +772,62 @@ function keyPressed(){
 
     }
     else if (keyCode === 8 && state === `active` && instructions2.active === true){
+
       // Reset Stop Command
       instructions2.active = false;
       timerInstructions2 = 10;
       timerInstructions = 3;
       button2.active = true;
 
+      drop2.y = -5;
+      drop2.vy = 0;
+
+
+
+
       setTimeout( ()=>{
         if(stopCommands.length < 4){
         interruption.active = true;
-        console.log(interruption.active);
-        setTimeout( ()=>{
-          interruption.active = false;
-          waltzInterruption.pause();
-          if (waltz.isPaused){
-            waltz.loop();
-          }
+        // if(waltz.isPlaying){
+          waltz.pause();
+          waltzInterruption.loop();
+          returnToActive();
+          // playMusic();
+        // }
 
-          console.log(interruption.active);
-        }, 4000);
-        playMusic();
-        }
-      }, 1000);
+        // waltz.pause();
+        // setTimeout( ()=>{
+        //   if(waltz.isPaused){
+        //     waltz.loop();
+        //   }
+        // }, 4000);
+        // waltzInterruption.play();
+        // playMusic();
+      }
+    }, 1000);
 
-      // Keep Track of Inputs
-      stopCommands.push(stopCommand);
+      //   setTimeout( ()=>{
+      //
+      // }, 1000);
+
+      // setTimeout( ()=>{
+      //   if(stopCommands.length < 4){
+      //   interruption.active = true;
+      //   setTimeout( ()=>{
+      //     interruption.active = false;
+      //     waltzInterruption.pause();
+      //     if (waltz.isPaused){
+      //       waltz.loop();
+      //     }
+      //
+      //     console.log(interruption.active);
+      //   }, 4000);
+      //   playMusic();
+      //   }
+      // }, 1000);
+      //
+      // // Keep Track of Inputs
+      // stopCommands.push(stopCommand);
 
     }
 
@@ -798,23 +846,46 @@ function keyReleased(){
   else if (state === `active` && button2.active === true && keyCode === 8){
     button2.active = false;
     timerInstructions = 4;
+    // setTimeout( ()=>{
+    //   waltz.loop();
+    // }, 4000);
   }
 }
 
-function playMusic(){
-    if(interruption.active){
-      waltz.pause();
-      waltzInterruption.loop();
-    }
-    if(!interruption.active){
-      waltz.loop();
-      waltzInterruption.stop();
-      setTimeout( ()=>{
-        interruption.active = false;
-        console.log(interruption.active);
-      }, 4000);
-    }
-}
+// function playMusic(){
+//     if(interruption.active){
+//       waltz.pause();
+//       waltzInterruption.loop();
+//     }
+//     if(!interruption.active){
+//       waltz.loop();
+//       waltzInterruption.stop();
+//       setTimeout( ()=>{
+//         interruption.active = false;
+//         console.log(interruption.active);
+//       }, 4000);
+//     }
+// }
+
+
+// function playMusic(){
+//   if (waltzInterruption.isPlaying) {
+//         waltz.pause();
+//          sampleIsPlaying = false;
+//         //
+//         // sampleIsPlaying = false;
+//         // text('Click to resume!', width / 2, height / 2);
+//       } else {
+//         //loop our sound element until we
+//         //call ele.pause() on it.
+//         waltz.loop();
+//          waltzInterruption.isPlaying = true;
+//
+//         // sampleIsPlaying = true;
+//         // text('Click to pause!', width / 2, height / 2);
+//       }
+// }
+
 //
 // function stopMusic(){
 //     waltz.pause();
