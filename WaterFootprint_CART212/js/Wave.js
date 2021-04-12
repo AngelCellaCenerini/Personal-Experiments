@@ -16,7 +16,7 @@ class Wave{
   activate(){
       setTimeout( ()=>{
         this.active = true;
-      }, 2000);
+      }, 4000);
     }
 
   display(){
@@ -25,7 +25,5 @@ class Wave{
       image(this.image2, this.x2, this.y);
     }
   }
-
-
 
   }

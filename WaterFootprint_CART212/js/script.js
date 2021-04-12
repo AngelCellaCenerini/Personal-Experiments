@@ -62,6 +62,8 @@ let highlight = {
 
 let waterfall = undefined;
 let waterfallImage = undefined;
+let bigWaterfall = undefined;
+let bigWaterfallImage = undefined;
 let splash = undefined;
 let splashImage = undefined;
 let drop = undefined;
@@ -115,6 +117,7 @@ function preload() {
   lights = loadImage('assets/images/lightGIF6.gif');
   avatar = loadImage('assets/images/clown.png');
   waterfallImage = loadImage('assets/images/waterfall.gif');
+  bigWaterfallImage = loadImage('assets/images/bigWaterfall.gif');
   splashImage = loadImage('assets/images/splash2.gif');
   dropImage = loadImage('assets/images/goccia.png');
   waveRImage = loadImage('assets/images/waveR.gif');;
@@ -163,6 +166,9 @@ function setup() {
 
   // Waterfall
   waterfall = new Waterfall(waterfallImage);
+
+  // Big Waterfall
+  bigWaterfall = new BigWaterfall(bigWaterfallImage);
 
   // Splash
   splash = new Splash(splashImage);
@@ -247,6 +253,9 @@ function draw() {
     fill(30);
     rect(width/2, 632, 250, 220);
     pop();
+
+    // Waterfall
+    bigWaterfall.update();
 
     // Base
     push();
