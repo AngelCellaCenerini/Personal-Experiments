@@ -548,6 +548,7 @@ function displayInterruption(){
     // Return to Active
     setTimeout( ()=>{
       interruption.active = false;
+      console.log(interruption.active);
     }, 4000);
 
 }
@@ -763,6 +764,16 @@ function keyPressed(){
       setTimeout( ()=>{
         if(stopCommands.length < 4){
         interruption.active = true;
+        console.log(interruption.active);
+        setTimeout( ()=>{
+          interruption.active = false;
+          waltzInterruption.pause();
+          if (waltz.isPaused){
+            waltz.loop();
+          }
+
+          console.log(interruption.active);
+        }, 4000);
         playMusic();
         }
       }, 1000);
@@ -793,11 +804,15 @@ function keyReleased(){
 function playMusic(){
     if(interruption.active){
       waltz.pause();
-      waltzInterruption.play();
+      waltzInterruption.loop();
     }
     if(!interruption.active){
       waltz.loop();
-      waltzInterruption.pause();
+      waltzInterruption.stop();
+      setTimeout( ()=>{
+        interruption.active = false;
+        console.log(interruption.active);
+      }, 4000);
     }
 }
 //
