@@ -10,6 +10,7 @@ class Message{
     this.active = false;
     this.switch = 2000;
     this.duration = 0;
+    this.duration2 = 4;
   }
 
   update(){
@@ -63,7 +64,7 @@ class Message{
         this.vy = 0;
         this.speed = 0;
         this.duration++;
-        if(this.duration > 4*60){
+        if(this.duration > this.duration2*60){
           this.active = false;
         }
       }

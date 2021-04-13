@@ -109,6 +109,10 @@ let cowImage = undefined;
 // Messages
 let message = undefined;
 let message2 = undefined;
+let message3 = undefined;
+let message4 = undefined;
+let message5 = undefined;
+let message6 = undefined;
 
 // Finale
 let screen1 = {
@@ -247,6 +251,10 @@ function setup() {
   // Message
   message = new Message();
   message2 = new MessageS();
+  message3 = new MessageT();
+  message4 = new MessageFo();
+  message5 = new MessageFi();
+  message6 = new MessageSi();
 
 
 
@@ -392,6 +400,10 @@ function draw() {
     // Message
     message.update();
     message2.update();
+    message3.update();
+    message4.update();
+    message5.update();
+    message6.update();
 
     // Side Waves
     // waves.update();
