@@ -9,10 +9,9 @@ CART212 Final Project
 
 let timerInstructions = 4;
 // let timerInstructions2 = 30;
-let timerInstructions2 = 30;
+let timerInstructions2 = 25;
 let timerUserInput = 2;
-let timerActive = 3;
-let timerInterruption = 4;
+let timerActive = 100;
 let timerPassive = 10;
 let timerAnimation1 = 1;
 let timerAnimation2 = 1;
@@ -396,7 +395,7 @@ function draw() {
     message2.update();
 
     // Side Waves
-    waves.update();
+    // waves.update();
 
     // interruption
     if(interruption.active){
@@ -500,11 +499,14 @@ function titleText(){
 }
 
 function instructionsTimer(){
-  if(frameCount % 60 === 0 && timerInstructions > 0){
-    timerInstructions --;
+  if (!instructions2.active){
+    if(frameCount % 60 === 0 && timerInstructions > 0){
+      timerInstructions --;
+    }
+    if(timerInstructions === 0){
+     instructions.active = true;
   }
-  if(timerInstructions === 0){
-   instructions.active = true;
+
    // instructions2.active = false;
    // timerInstructions2 = 8;
 
@@ -532,9 +534,10 @@ function instructionsTimer2(){
   if(timerInstructions2 === 0){
     if(stopCommands.length < 3){
       instructions2.active = true;
+      timerInstructions = 4;
     }
     else{
-      return
+      instructions2.active = false;
     }
  }
 }
@@ -548,7 +551,7 @@ function triggerAnimation(){
       coffee.active = false;
       score3.deactivate();
       fadedText.active = true;
-  }, 3000);
+  }, 3500);
   }
 
   // Apple
@@ -558,7 +561,7 @@ function triggerAnimation(){
       apple.active = false;
       score4.deactivate();
       fadedText.active = true;
-  }, 3000);
+  }, 3500);
   }
 
   // Bread
@@ -568,7 +571,7 @@ function triggerAnimation(){
       bread.active = false;
       score5.deactivate();
       fadedText.active = true;
-  }, 3000);
+  }, 3500);
   }
 
   // Cotton
@@ -578,7 +581,7 @@ function triggerAnimation(){
     cotton.active = false;
     score2.deactivate();
     fadedText.active = true;
-  }, 3000);
+  }, 3500);
   }
 
   // Chocolate
@@ -588,7 +591,7 @@ function triggerAnimation(){
       chocolate.active = false;
       score6.deactivate();
       fadedText.active = true;
-  }, 3000);
+  }, 3500);
   }
 
   // Phone
@@ -598,7 +601,7 @@ function triggerAnimation(){
       phone.active = false;
       score7.deactivate();
       fadedText.active = true;
-  }, 3000);
+  }, 3500);
   }
 
   // // Cow
@@ -623,7 +626,7 @@ function automaticAnimation(){
       jeans.active = false;
       score1.deactivate();
       fadedText.active = true;
-  }, 3000);
+  }, 3500);
   }
 
   // Cow
@@ -633,7 +636,7 @@ function automaticAnimation(){
       cow.active = false;
       score1.deactivate();
       fadedText.active = true;
-  }, 3000);
+  }, 3500);
   }
 
 }
@@ -709,12 +712,18 @@ function returnToActive(){
     // if(waltzInterruption.isPlaying){
       waltzInterruption.stop();
       waltz.loop();
-    // }
-    // playMusic();
+  }, 5000);
+}
 
+function returnToActive2(){
+  // Return to Active
 
-    console.log(interruption.active);
-  }, 4000);
+  setTimeout( ()=>{
+    interruption.active = false;
+    // if(waltzInterruption.isPlaying){
+      waltzInterruption.stop();
+      waltz.loop();
+  }, 2500);
 }
 
 // function interruptionTimer(){
@@ -976,23 +985,39 @@ function keyPressed(){
     else if (keyCode === 8 && state === `active`){
 
       if(instructions2.active){
+
         // Reset Stop Command
         instructions2.active = false;
-        timerInstructions2 = 10;
-        timerInstructions = 3;
+        if(stopCommands.length < 2 && userInputs.length < 4){
+          timerInstructions2 = 13;
+        }
+        else if(stopCommands.length < 3 && userInputs.length < 5){
+          timerInstructions2 = 21;
+        }
+
+        timerInstructions = 4;
         button2.active = true;
+
+
 
         drop2.y = -5;
         drop2.vy = 0;
 
 
         setTimeout( ()=>{
-          if(stopCommands.length < 4){
+          if(stopCommands.length < 2){
           interruption.active = true;
           // if(waltz.isPlaying){
             waltz.pause();
             waltzInterruption.loop();
             returnToActive();
+        }
+        else if(stopCommands.length < 4){
+          interruption.active = true;
+          // if(waltz.isPlaying){
+            waltz.pause();
+            waltzInterruption.loop();
+            returnToActive2();
         }
       }, 1000);
       }
@@ -1061,11 +1086,11 @@ function keyPressed(){
 
 function keyReleased(){
   if (state === `active` && button.active === true && keyCode === 13){
-    if(stopCommands.length < 3){
+    if(stopCommands.length < 5){
       button.active = false;
     }
     else{
-      return;
+      // return;
 
       setTimeout( ()=>{
         jeans.activate();
