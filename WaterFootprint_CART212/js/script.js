@@ -8,7 +8,7 @@ CART212 Final Project
 */
 
 let timerInstructions = 4;
-let timerInstructions2 = 25;
+let timerInstructions2 = 26;
 let timerUserInput = 2;
 let timerActive = 100;
 let timerPassive = 10;
@@ -393,6 +393,7 @@ function draw() {
     instructionsTimer();
     instructionsTimer2();
 
+
     if (instructions.active === true && instructions2.active === false){
       push();
       fill(255);
@@ -593,7 +594,7 @@ function instructionsTimer2(){
     timerInstructions2 --;
   }
   if(timerInstructions2 === 0){
-    if(stopCommands.length < 3){
+    if(stopCommands.length < 3 && instructions2.active === false){
       instructions2.active = true;
       timerInstructions = 4;
     }
@@ -1059,6 +1060,9 @@ function keyPressed(){
     // Reset Command
     instructions.active = false;
     timerInstructions = 7;
+    if(userInputs.length < 4 && userInputs.length > 2){
+      timerInstructions = 8;
+    }
 
     // Start Button
     if (keyIsPressed && button2.active === false && instructions2.active === false){
@@ -1153,16 +1157,19 @@ function keyPressed(){
 
       if(instructions2.active){
 
+        timerInstructions = 4;
+
         // Reset Stop Command
-        instructions2.active = false;
-        if(stopCommands.length < 3 && userInputs.length < 6){
-          timerInstructions2 = 13;
+        if(userInputs.length < 4){
+          instructions2.active = false;
+          timerInstructions2 = 12;
+
         }
-        else if(stopCommands.length < 4 && userInputs.length < 7){
-          timerInstructions2 = 26;
+        else if(userInputs.length < 5){
+          instructions2.active = false;
+          timerInstructions2 = 18;
         }
 
-        timerInstructions = 4;
         if(stopCommands.length < 4){
             button2.active = true;
         }
@@ -1263,7 +1270,7 @@ function keyPressed(){
 
 function keyReleased(){
   if (state === `active` && button.active === true && keyCode === 13){
-    if(stopCommands.length < 3){
+    if(stopCommands.length < 3 && userInputs.length < 7){
       button.active = false;
     }
     else{
