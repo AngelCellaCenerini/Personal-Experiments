@@ -15,8 +15,18 @@ let timerPassive = 10;
 let timerAnimation1 = 1;
 let timerAnimation2 = 1;
 let timerAnimation3 = 1;
-let timerAnimation4 = 3;
+let timerAnimation4 = 10;
 let timerScreen1 = 2;
+let timerScreen2 = 2;
+let timerScreen3 = 2;
+let timerScreen4 = 4;
+let timerScreen5 = 4;
+let timerScreen6 = 4;
+let timerScreen7 = 6;
+let timerScreen8 = 6;
+let timerScreen9 = 6;
+
+
 
 let waltzIntro = undefined;
 let waltzInterruption = undefined;
@@ -118,6 +128,30 @@ let message6 = undefined;
 let screen1 = {
   active: false
 }
+let screen2 = {
+  active: false
+}
+let screen3 = {
+  active: false
+}
+let screen4 = {
+  active: false
+}
+let screen5 = {
+  active: false
+}
+let screen6 = {
+  active: false
+}
+let screen7 = {
+  active: false
+}
+let screen8 = {
+  active: false
+}
+let screen9 = {
+  active: false
+}
 let screenImage = undefined;
 
 
@@ -132,7 +166,7 @@ let fadingEffect = {
   active: false
 }
 
-let state = `title` // Title, Animation, active, Passive
+let state = `animation1` // Title, Animation, active, Passive
 
 /**
 Description of preload
@@ -467,7 +501,18 @@ function draw() {
     image(screenImage, width/2, 5*height/6, 250, 210);
     image(screenImage, 3*width/4, 5*height/6, 250, 210);
 
+    // Screens
     screen1Timer();
+    screen2Timer();
+    screen3Timer();
+    screen4Timer();
+    screen5Timer();
+    screen6Timer();
+    screen7Timer();
+    screen8Timer();
+    screen9Timer();
+
+    // Squares
     coverPic();
   }
   else if (state === `credits`){
@@ -805,6 +850,73 @@ function screen1Timer(){
    screen1.active = true;
  }
 }
+function screen2Timer(){
+  if(frameCount % 60 === 0 && timerScreen2 > 0){
+    timerScreen2 --;
+  }
+  if(timerScreen2 === 0){
+   screen2.active = true;
+ }
+}
+function screen3Timer(){
+  if(frameCount % 60 === 0 && timerScreen3 > 0){
+    timerScreen3 --;
+  }
+  if(timerScreen3 === 0){
+   screen3.active = true;
+ }
+}
+function screen4Timer(){
+  if(frameCount % 60 === 0 && timerScreen4 > 0){
+    timerScreen4 --;
+  }
+  if(timerScreen4 === 0){
+   screen4.active = true;
+ }
+}
+function screen5Timer(){
+  if(frameCount % 60 === 0 && timerScreen5 > 0){
+    timerScreen5 --;
+  }
+  if(timerScreen5 === 0){
+   screen5.active = true;
+ }
+}
+function screen6Timer(){
+  if(frameCount % 60 === 0 && timerScreen6 > 0){
+    timerScreen6 --;
+  }
+  if(timerScreen6 === 0){
+   screen6.active = true;
+ }
+}
+function screen7Timer(){
+  if(frameCount % 60 === 0 && timerScreen7 > 0){
+    timerScreen7 --;
+  }
+  if(timerScreen7 === 0){
+   screen7.active = true;
+ }
+}
+function screen8Timer(){
+  if(frameCount % 60 === 0 && timerScreen8 > 0){
+    timerScreen8 --;
+  }
+  if(timerScreen8 === 0){
+   screen8.active = true;
+ }
+}
+function screen9Timer(){
+  if(frameCount % 60 === 0 && timerScreen9 > 0){
+    timerScreen9 --;
+  }
+  if(timerScreen9 === 0){
+   screen9.active = true;
+ }
+}
+
+
+
 
 function coverPic(){
   push();
@@ -812,39 +924,80 @@ function coverPic(){
   if (screen1.active){
     rect( width/4, height/6, 250, 210);
   }
+  if (screen2.active){
   rect(width/2, height/6, 250, 210);
+  }
+  if (screen3.active){
   rect(3*width/4, height/6, 250, 210);
+  }
+  if (screen4.active){
   rect(width/4, height/2, 250, 210);
+  }
+  if (screen5.active){
   rect(width/2, height/2, 250, 210);
+  }
+  if (screen6.active){
   rect(3*width/4, height/2, 250, 210);
+  }
+  if (screen7.active){
   rect(width/4, 5*height/6, 250, 210);
+  }
+  if (screen8.active){
   rect(width/2, 5*height/6, 250, 210);
+  }
+  if (screen9.active){
   rect(3*width/4, 5*height/6, 250, 210);
+  }
 
 
   // Text
   fill(255);
-  textSize(32);
+  textSize(28);
   if (screen1.active){
-    text(`ITALY
-      30 L  per  day`,  width/4, height/6);
+    text(`CHINA
+      362  trillion  gallons
+      per  year`,  width/4, height/6);
   }
-  text(`ITALY
-    30 L  per  day`, width/2, height/6);
-  text(`ITALY
-    30 L  per  day`, 3*width/4, height/6);
-  text(`ITALY
-    30 L  per  day`, width/4, height/2);
-  text(`ITALY
-    30 L  per  day`, width/2, height/2);
-  text(`ITALY
-    30 L  per  day`, 3*width/4, height/2);
-  text(`ITALY
-    30 L  per  day`, width/4, 5*height/6);
-  text(`ITALY
-    30 L  per  day`, width/2, 5*height/6);
-  text(`ITALY
-    30 L  per  day`, 3*width/4, 5*height/6);
+  if (screen2.active){
+  text(`USA
+    216  trillion  gallons
+    per  year`, width/2, height/6);
+  }
+  if (screen3.active){
+  text(`BRAZIL
+    95  trillion  gallons
+    per  year`, 3*width/4, height/6);
+  }
+  if (screen4.active){
+  text(`RUSSIA
+    71  trillion  gallons
+    per  year`, width/4, height/2);
+  }
+  if (screen5.active){
+  text(`MEXICO
+    53  trillion  gallons
+    per  year`, width/2, height/2);
+  }
+  if (screen6.active){
+  text(`INDIA
+    30  trillion  gallons
+    per  year`, 3*width/4, height/2);
+  }
+  if (screen7.active){
+  text(`ENGLAND / FRANCE
+    20  trillion  gallons
+    per  year`, width/4, 5*height/6);
+  }
+  if (screen8.active){
+  text(`CANADA
+    19  trillion  gallons
+    per  year`, width/2, 5*height/6);
+  }
+  if (screen9.active){
+  text(`AUSTRALIA
+    12  trillion  gallons
+    per  year`, 3*width/4, 5*height/6);
+  }
   pop();
 }
 
