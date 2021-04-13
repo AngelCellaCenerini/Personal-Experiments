@@ -359,7 +359,7 @@ function draw() {
     score1.displayScore();
 
 
-
+    // Display Products
     triggerAnimation();
     automaticAnimationJeans();
     automaticAnimationCow();
@@ -436,14 +436,6 @@ function draw() {
       pop();
     }
 
-    // Message
-    message.update();
-    message2.update();
-    message3.update();
-    message4.update();
-    message5.update();
-    message6.update();
-
     // Side Waves
     waves.update();
 
@@ -452,22 +444,13 @@ function draw() {
       displayInterruption();
     }
 
-  }
-  else if (state === `interruption`){
-    // waltz.pause();
-    // interruptionTimer();
-
-    //
-    // displayInterruption();
-
-
-
-    // playMusic();
-    // waltz.pause();
-
-    // if(waltz.isPlaying){
-    //   waltz.pause();
-    // }
+    // Message
+    message.update();
+    message2.update();
+    message3.update();
+    message4.update();
+    message5.update();
+    message6.update();
 
   }
   else if (state === `animation1`){
@@ -495,7 +478,8 @@ function draw() {
   }
   else if (state === `animation4`){
     background(0);
-    animation4Timer();
+    switchToEnding();
+    // animation4Timer();
     image(screenImage, width/4, height/6, 250, 210);
     image(screenImage, width/2, height/6, 250, 210);
     image(screenImage, 3*width/4, height/6, 250, 210);
@@ -569,25 +553,6 @@ function instructionsTimer(){
         instructions.active = true;
       }
   }
-
-   // instructions2.active = false;
-   // timerInstructions2 = 8;
-
-
-
-   // if(userInputs.length > 1){
-   //
-   //   // Add Input
-   //   userInputs.push(userInput);
-   //   // Waterfall
-   //   waterfall.active = true;
-   //
-   //   // Splash
-   //   setTimeout( ()=>{
-   //       splash.active = true;
-   //   }, 2200);
-   // }
-
  }
 }
 function instructionsTimer2(){
@@ -779,30 +744,6 @@ function returnToActive2(){
   }, 2500);
 }
 
-// function interruptionTimer(){
-//   if(frameCount % 60 === 0 && timerInterruption > 0){
-//     timerInterruption --;
-//   }
-//   if(timerInterruption === 0){
-//       state = `active`;
-//       playMusic();
-//       // timerInterruption = 2;
-//       if (waltzInterruption.isPlaying){
-//         waltzInterruption.stop();
-//       }
-//
-//  }
-// }
-
-function passiveTimer(){
-  if(frameCount % 60 === 0 && timerPassive > 0){
-    timerPassive --;
-  }
-  if(timerPassive === 0){
-   state = `animation1`;
- }
-}
-
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
@@ -838,6 +779,14 @@ function animation4Timer(){
   if(timerAnimation4 === 0){
    state = `credits`;
  }
+}
+
+function switchToEnding(){
+  if (waltz.isPlaying === false){
+    setTimeout( ()=>{
+      state = `credits`;
+    }, 500);
+  }
 }
 
 function screen1Timer(){
@@ -1037,7 +986,7 @@ function keyPressed(){
     }
 
 
-    if(userInputs.length < 6 && instructions2.active === false){
+    if(userInputs.length < 6 && instructions2.active === false && button2.active === false){
       // Add Input
       userInputs.push(userInput);
       // Waterfall
@@ -1334,5 +1283,5 @@ function dunno(){
 
   setTimeout( ()=>{
     waves.active = true;
-  }, 17000);
+  }, 18000);
 }
