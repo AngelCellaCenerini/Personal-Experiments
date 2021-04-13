@@ -12,16 +12,16 @@ class BigWaterfall{
   }
 
   update(){
-    this.activate();
+    // this.activate();
     this.move();
     this.display();
   }
 
-  activate(){
-      setTimeout( ()=>{
-        this.active = true;
-      }, 20000);
-    }
+  // activate(){
+  //     setTimeout( ()=>{
+  //       this.active = true;
+  //     }, 20000);
+  //   }
 
     move(){
       if (this.active){

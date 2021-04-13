@@ -9,15 +9,15 @@ class Wave{
   }
 
   update(){
-    this.activate();
+    // this.activate();
     this.display();
   }
 
-  activate(){
-      setTimeout( ()=>{
-        this.active = true;
-      }, 24000);
-    }
+  // activate(){
+  //     setTimeout( ()=>{
+  //       this.active = true;
+  //     }, 24000);
+  //   }
 
   display(){
     if (this.active){

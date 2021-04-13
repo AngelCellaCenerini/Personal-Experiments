@@ -10,7 +10,7 @@ CART212 Final Project
 let timerInstructions = 4;
 let timerInstructions2 = 26;
 let timerUserInput = 2;
-let timerActive = 100;
+let timerActive = 8;
 let timerPassive = 10;
 let timerAnimation1 = 1;
 let timerAnimation2 = 1;
@@ -311,7 +311,7 @@ function draw() {
   }
   else if (state === `active`){
 
-    if(userInputs.length > 0){
+    if(bigWaterfall.active){
       activeTimer();
     }
 
@@ -379,7 +379,7 @@ function draw() {
     pop();
 
     // Waterfall
-    // bigWaterfall.update();
+    bigWaterfall.update();
 
     // Base
     image(baseImage, width/2, 380);
@@ -444,7 +444,7 @@ function draw() {
     message6.update();
 
     // Side Waves
-    // waves.update();
+    waves.update();
 
     // interruption
     if(interruption.active){
@@ -1273,35 +1273,6 @@ function keyReleased(){
     if(stopCommands.length < 3 && userInputs.length < 7){
       button.active = false;
     }
-    else{
-      // return;
-
-      // Waterfall
-      waterfall.active = true;
-
-      // Splash
-      setTimeout( ()=>{
-          splash.active = true;
-      }, 2200);
-
-      setTimeout( ()=>{
-        jeans.activate();
-        setTimeout(()=>{
-          score8.activeS = true;
-          fadedText.active = false;
-        }, 3000);
-      }, 200);
-
-      setTimeout( ()=>{
-        cow.activate();
-        setTimeout(()=>{
-          score1.activeS = true;
-          fadedText.active = false;
-        }, 3000);
-      }, 7000);
-
-      setTimeout(automaticAnimation, 3000);
-    }
 
   }
   else if (state === `active` && button2.active === true && keyCode === 8){
@@ -1311,6 +1282,7 @@ function keyReleased(){
       if(stopCommands.length < 4 && stopCommands.length > 2){
         setTimeout( ()=>{
           button.active = true;
+          dunno();
         }, 5000);
       }
     }
@@ -1321,41 +1293,46 @@ function keyReleased(){
   }
 }
 
-// function playMusic(){
-//     if(interruption.active){
-//       waltz.pause();
-//       waltzInterruption.loop();
-//     }
-//     if(!interruption.active){
-//       waltz.loop();
-//       waltzInterruption.stop();
-//       setTimeout( ()=>{
-//         interruption.active = false;
-//         console.log(interruption.active);
-//       }, 4000);
-//     }
-// }
+function dunno(){
+  // Waterfall
+  waterfall.active = true;
 
+  setTimeout( ()=>{
+    waterfall.active = true;
+  }, 6000);
 
-// function playMusic(){
-//   if (waltzInterruption.isPlaying) {
-//         waltz.pause();
-//          sampleIsPlaying = false;
-//         //
-//         // sampleIsPlaying = false;
-//         // text('Click to resume!', width / 2, height / 2);
-//       } else {
-//         //loop our sound element until we
-//         //call ele.pause() on it.
-//         waltz.loop();
-//          waltzInterruption.isPlaying = true;
-//
-//         // sampleIsPlaying = true;
-//         // text('Click to pause!', width / 2, height / 2);
-//       }
-// }
+  // Splash
+  setTimeout( ()=>{
+      splash.active = true;
+  }, 2200);
+  setTimeout( ()=>{
+      splash.active = true;
+  }, 8200);
 
-//
-// function stopMusic(){
-//     waltz.pause();
-// }
+  setTimeout( ()=>{
+    jeans.activate();
+    setTimeout(()=>{
+      score8.activeS = true;
+      fadedText.active = false;
+    }, 3000);
+  }, 200);
+
+  setTimeout( ()=>{
+    cow.activate();
+    setTimeout(()=>{
+      score1.activeS = true;
+      fadedText.active = false;
+    }, 3000);
+  }, 7000);
+
+  setTimeout(automaticAnimation, 3000);
+
+  automaticAnimation();
+  setTimeout( ()=>{
+    bigWaterfall.active = true;
+  }, 12000);
+
+  setTimeout( ()=>{
+    waves.active = true;
+  }, 14000);
+}
