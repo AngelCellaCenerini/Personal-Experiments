@@ -361,6 +361,8 @@ function draw() {
 
 
     triggerAnimation();
+    automaticAnimationJeans();
+    automaticAnimationCow();
 
     // Waterfall
     waterfall.update();
@@ -1273,9 +1275,12 @@ function keyReleased(){
       if(stopCommands.length < 4 && stopCommands.length > 2){
         setTimeout( ()=>{
           button.active = true;
-          jeans.active = true;
-          console.log(jeans.active);
-          cow.active = true;
+          setTimeout( ()=>{
+            jeans.activate();
+          }, 3000);
+          setTimeout( ()=>{
+            cow.activate();
+          }, 9000);
           dunno();
         }, 4000);
       }
@@ -1329,5 +1334,5 @@ function dunno(){
 
   setTimeout( ()=>{
     waves.active = true;
-  }, 16000);
+  }, 17000);
 }
