@@ -8,7 +8,6 @@ CART212 Final Project
 */
 
 let timerInstructions = 4;
-// let timerInstructions2 = 30;
 let timerInstructions2 = 25;
 let timerUserInput = 2;
 let timerActive = 100;
@@ -504,7 +503,9 @@ function instructionsTimer(){
       timerInstructions --;
     }
     if(timerInstructions === 0){
-     instructions.active = true;
+      if (userInputs.length < 6){
+        instructions.active = true;
+      }
   }
 
    // instructions2.active = false;
@@ -535,9 +536,6 @@ function instructionsTimer2(){
     if(stopCommands.length < 3){
       instructions2.active = true;
       timerInstructions = 4;
-    }
-    else{
-      instructions2.active = false;
     }
  }
 }
@@ -949,7 +947,7 @@ function keyPressed(){
       }
       // Phone
       if ((userInputs.length < 7 && userInputs.length > 5) && interruption.active === false){
-          userInputs.push(userInput);
+          // userInputs.push(userInput);
           phone.activate();
           setTimeout(()=>{
             score7.activeH = true;
@@ -988,15 +986,22 @@ function keyPressed(){
 
         // Reset Stop Command
         instructions2.active = false;
-        if(stopCommands.length < 2 && userInputs.length < 4){
+        if(stopCommands.length < 3 && userInputs.length < 6){
           timerInstructions2 = 13;
         }
-        else if(stopCommands.length < 3 && userInputs.length < 5){
-          timerInstructions2 = 21;
+        else if(stopCommands.length < 4 && userInputs.length < 7){
+          timerInstructions2 = 26;
         }
 
         timerInstructions = 4;
-        button2.active = true;
+        if(stopCommands.length < 4){
+            button2.active = true;
+        }
+
+
+        if(button2.active){
+          instructions2.active = false;
+        }
 
 
 
@@ -1074,7 +1079,10 @@ function keyPressed(){
       // }, 1000);
       //
       // // Keep Track of Inputs
-      // stopCommands.push(stopCommand);
+      if (stopCommands.length < 4){
+        stopCommands.push(stopCommand);
+      }
+
 
       // if(stopCommands.length < 4){
       //
@@ -1086,11 +1094,19 @@ function keyPressed(){
 
 function keyReleased(){
   if (state === `active` && button.active === true && keyCode === 13){
-    if(stopCommands.length < 5){
+    if(stopCommands.length < 3){
       button.active = false;
     }
     else{
       // return;
+
+      // Waterfall
+      waterfall.active = true;
+
+      // Splash
+      setTimeout( ()=>{
+          splash.active = true;
+      }, 2200);
 
       setTimeout( ()=>{
         jeans.activate();
@@ -1114,6 +1130,9 @@ function keyReleased(){
   }
   else if (state === `active` && button2.active === true && keyCode === 8){
     button2.active = false;
+    if (stopCommands.length < 4){
+      instructions2.active = false;
+    }
     timerInstructions = 4;
     // setTimeout( ()=>{
     //   waltz.loop();
