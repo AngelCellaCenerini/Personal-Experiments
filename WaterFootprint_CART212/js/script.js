@@ -10,8 +10,7 @@ CART212 Final Project
 let timerInstructions = 4;
 let timerInstructions2 = 26;
 let timerUserInput = 2;
-let timerActive = 8;
-let timerPassive = 10;
+let timerActive = 4;
 let timerAnimation1 = 1;
 let timerAnimation2 = 1;
 let timerAnimation3 = 1;
@@ -311,7 +310,7 @@ function draw() {
   }
   else if (state === `active`){
 
-    if(bigWaterfall.active){
+    if(waves.active){
       activeTimer();
     }
 
@@ -663,31 +662,23 @@ function triggerAnimation(){
   }, 3500);
   }
 
-  // // Cow
-  // cow.display();
-  // if(cow.active){
-  // setTimeout( ()=>{
-  //     cow.active = false;
-  //     score1.deactivate();
-  //     fadedText.active = true;
-  // }, 3000);
-  // }
-
-
-
 }
-function automaticAnimation(){
+function automaticAnimationJeans(){
 
   // Jeans
   jeans.display();
+  console.log(jeans.active);
   if(jeans.active){
   setTimeout( ()=>{
       jeans.active = false;
-      score1.deactivate();
+      score8.deactivate();
       fadedText.active = true;
   }, 3500);
   }
 
+
+}
+function automaticAnimationCow(){
   // Cow
   cow.display();
   if(cow.active){
@@ -1282,8 +1273,11 @@ function keyReleased(){
       if(stopCommands.length < 4 && stopCommands.length > 2){
         setTimeout( ()=>{
           button.active = true;
+          jeans.active = true;
+          console.log(jeans.active);
+          cow.active = true;
           dunno();
-        }, 5000);
+        }, 4000);
       }
     }
     timerInstructions = 4;
@@ -1310,7 +1304,8 @@ function dunno(){
   }, 8200);
 
   setTimeout( ()=>{
-    jeans.activate();
+    // jeans.activate();
+    console.log(jeans.active);
     setTimeout(()=>{
       score8.activeS = true;
       fadedText.active = false;
@@ -1318,21 +1313,21 @@ function dunno(){
   }, 200);
 
   setTimeout( ()=>{
-    cow.activate();
+    // cow.activate();
     setTimeout(()=>{
       score1.activeS = true;
       fadedText.active = false;
     }, 3000);
   }, 7000);
 
-  setTimeout(automaticAnimation, 3000);
+  setTimeout(automaticAnimationJeans, 4000);
+  setTimeout(automaticAnimationCow, 9000);
 
-  automaticAnimation();
   setTimeout( ()=>{
     bigWaterfall.active = true;
-  }, 12000);
+  }, 14000);
 
   setTimeout( ()=>{
     waves.active = true;
-  }, 14000);
+  }, 16000);
 }
