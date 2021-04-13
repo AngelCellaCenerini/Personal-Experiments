@@ -865,7 +865,7 @@ function keyPressed(){
     }
 
 
-    // if(userInputs.length < 0){
+    if(userInputs.length < 6){
       // Add Input
       userInputs.push(userInput);
       // Waterfall
@@ -875,7 +875,7 @@ function keyPressed(){
       setTimeout( ()=>{
           splash.active = true;
       }, 2200);
-    // }
+    }
 
 
     // Reset Command
@@ -890,7 +890,7 @@ function keyPressed(){
     }
 
     // Coffee
-    if (userInputs.length < 2){
+    if (userInputs.length < 2 && interruption.active === false){
         coffee.activate();
         setTimeout(()=>{
           score3.activeH = true;
@@ -900,7 +900,7 @@ function keyPressed(){
 
     }
     // Apple
-    if (userInputs.length < 3 && userInputs.length > 1){
+    if ((userInputs.length < 3 && userInputs.length > 1) && interruption.active === false){
         apple.activate();
         setTimeout(()=>{
           score4.activeS = true;
@@ -909,7 +909,7 @@ function keyPressed(){
 
     }
     // Bread
-    if (userInputs.length < 4 && userInputs.length > 2){
+    if ((userInputs.length < 4 && userInputs.length > 2) && interruption.active === false){
         bread.activate();
         setTimeout(()=>{
           score5.activeH = true;
@@ -919,7 +919,7 @@ function keyPressed(){
 
     }
     // Cotton
-    if (userInputs.length < 5 && userInputs.length > 3){
+    if ((userInputs.length < 5 && userInputs.length > 3) && interruption.active === false){
         cotton.activate();
         setTimeout(()=>{
           score2.activeH = true;
@@ -928,7 +928,7 @@ function keyPressed(){
         }, 3000);
     }
     // Chocolate
-    if (userInputs.length < 6 && userInputs.length > 4){
+    if ((userInputs.length < 6 && userInputs.length > 4) && interruption.active === false){
         chocolate.activate();
         setTimeout(()=>{
           score6.activeS = true;
@@ -936,7 +936,8 @@ function keyPressed(){
         }, 3000);
     }
     // Phone
-    if (userInputs.length < 7 && userInputs.length > 5){
+    if ((userInputs.length < 7 && userInputs.length > 5) && interruption.active === false){
+        userInputs.push(userInput);
         phone.activate();
         setTimeout(()=>{
           score7.activeH = true;
