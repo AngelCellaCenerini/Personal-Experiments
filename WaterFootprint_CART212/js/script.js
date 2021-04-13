@@ -10,7 +10,7 @@ CART212 Final Project
 let timerInstructions = 4;
 let timerInstructions2 = 26;
 let timerUserInput = 2;
-let timerActive = 4;
+let timerActive = 5;
 let timerAnimation1 = 1;
 let timerAnimation2 = 1;
 let timerAnimation3 = 1;
@@ -1160,7 +1160,7 @@ function keyPressed(){
         }
         else if(userInputs.length < 5){
           instructions2.active = false;
-          timerInstructions2 = 20;
+          timerInstructions2 = 18;
         }
 
         if(stopCommands.length < 4){
@@ -1275,12 +1275,12 @@ function keyReleased(){
       if(stopCommands.length < 4 && stopCommands.length > 2){
         setTimeout( ()=>{
           button.active = true;
-          setTimeout( ()=>{
+          // setTimeout( ()=>{
             jeans.activate();
-          }, 3000);
+          // }, 2000);
           setTimeout( ()=>{
             cow.activate();
-          }, 9000);
+          }, 6000);
           dunno();
         }, 4000);
       }
