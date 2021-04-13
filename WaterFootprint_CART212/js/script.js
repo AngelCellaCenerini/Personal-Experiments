@@ -78,15 +78,35 @@ let waves = undefined;
 let waveRImage = undefined;
 let waveLImage = undefined;
 
-// Score
+// Scores
 let score1 = undefined;
 let score2 = undefined;
+let score3 = undefined;
+let score4 = undefined;
+let score5 = undefined;
+let score6 = undefined;
+let score7 = undefined;
+let score8 = undefined;
+
 
 // Objects
-let cow = undefined;
-let cowImage = undefined;
+let coffee = undefined;
+let coffeeImage = undefined;
+let apple = undefined;
+let appleImage = undefined;
+let bread = undefined;
+let breadImage = undefined;
 let cotton = undefined;
 let cottonImage = undefined;
+let chocolate = undefined;
+let chocolateImage = undefined;
+let phone = undefined;
+let phoneImage = undefined;
+let jeans = undefined;
+let jeansImage = undefined;
+let cow = undefined;
+let cowImage = undefined;
+
 
 // Messages
 let message = undefined;
@@ -129,8 +149,14 @@ function preload() {
   waveLImage = loadImage('assets/images/waveL.gif');;
 
   // Objects
-  cowImage = loadImage('assets/images/cow.gif');
+  coffeeImage = loadImage('assets/images/cotton.gif');
+  appleImage = loadImage('assets/images/cotton.gif');
+  breadImage = loadImage('assets/images/cotton.gif');
   cottonImage = loadImage('assets/images/cotton.gif');
+  chocolateImage = loadImage('assets/images/cotton.gif');
+  phoneImage = loadImage('assets/images/cotton.gif');
+  jeansImage = loadImage('assets/images/cotton.gif');
+  cowImage = loadImage('assets/images/cow.gif');
 
   // Finale
   screenImage = loadImage('assets/images/prova.gif');
@@ -157,17 +183,50 @@ function setup() {
   imageMode(CENTER);
 
   // Objects
-  cow = new Product(cowImage);
+  coffee = new Product(coffeeImage);
+  apple = new Product(appleImage);
+  bread = new Product(breadImage);
   cotton = new Product(cottonImage);
+  chocolate = new Product(chocolateImage);
+  phone = new Product(phoneImage);
+  jeans = new Product(jeansImage);
+  cow = new Product(cowImage);
 
   // Scores
+  // Coffee
+  let stringC1 = `1 CUP (125 ml)  COFFEE`;
+  let stringC2 = `+  132  LITRES`;
+  score3 = new HighScore(stringC1, stringC2);
+  // Apple
+  let stringD1 = `1  APPLE`;
+  let stringD2 = `+  70  LITRES`;
+  score4 = new HighScore(stringD1, stringD2);
+  // Bread
+  let stringE1 = `1KG  BREAD`;
+  let stringE2 = `+  1600  LITRES`;
+  score5 = new HighScore(stringE1, stringE2);
+  // Cotton
+  let stringB1 = `1KG  COTTON  FABRIC`;
+  let stringB2 = `+  10 000  LITRES`;
+  score2 = new HighScore(stringB1, stringB2);
+  // Chocolate
+  let stringF1 = `1KG  COTTON  FABRIC`;
+  let stringF2 = `+  10 000  LITRES`;
+  score6 = new HighScore(stringF1, stringF2);
+  // Phone
+  let stringG1 = `1  SMARTPHONE`;
+  let stringG2 = `+  12 000  LITRES`;
+  score7 = new HighScore(stringG1, stringG2);
+  // Jeans
+  let stringH1 = `1  PAIR`;
+  let stringH2 = `+  8 000  LITRES`;
+  score8 = new HighScore(stringH1, stringH2);
+  // Cow
   let stringA1 = `1KG  BEEF`;
   let stringA2 = `+  15 000  LITRES`;
   score1 = new HighScore(stringA1, stringA2);
 
-  let stringB1 = `1KG  BEEF`;
-  let stringB2 = `+  15 000  LITRES`;
-  score2 = new HighScore(stringB1, stringB2);
+
 
   // Waterfall
   waterfall = new Waterfall(waterfallImage);
@@ -233,13 +292,27 @@ function draw() {
     }
 
     // Scores
-    // Cow
-    score1.displayHighScore();
-    score1.displayScore();
-
+    // Coffee
+    score3.displayHighScore();
+    score3.displayScore();
+    // Apple
+    score4.displayScore();
+    // Bread
+    score5.displayHighScore();
+    score5.displayScore();
     // Cotton
     score2.displayHighScore();
     score2.displayScore();
+    // Chocolate
+    score6.displayScore();
+    // Phone
+    score7.displayHighScore();
+    score7.displayScore();
+    // Jeans
+    score8.displayScore();
+    // Cow
+    score1.displayScore();
+
 
 
     triggerAnimation();
@@ -466,16 +539,36 @@ function instructionsTimer2(){
 }
 
 function triggerAnimation(){
-  // Cow
-  cow.display();
-  if(cow.active){
+
+  // Coffee
+  coffee.display();
+  if(coffee.active){
   setTimeout( ()=>{
-      cow.active = false;
-      score1.deactivate();
+      coffee.active = false;
+      score3.deactivate();
       fadedText.active = true;
   }, 3000);
   }
 
+  // Apple
+  apple.display();
+  if(apple.active){
+  setTimeout( ()=>{
+      apple.active = false;
+      score4.deactivate();
+      fadedText.active = true;
+  }, 3000);
+  }
+
+  // Bread
+  bread.display();
+  if(bread.active){
+  setTimeout( ()=>{
+      bread.active = false;
+      score5.deactivate();
+      fadedText.active = true;
+  }, 3000);
+  }
 
   // Cotton
   cotton.display();
@@ -487,6 +580,60 @@ function triggerAnimation(){
   }, 3000);
   }
 
+  // Chocolate
+  chocolate.display();
+  if(chocolate.active){
+  setTimeout( ()=>{
+      chocolate.active = false;
+      score6.deactivate();
+      fadedText.active = true;
+  }, 3000);
+  }
+
+  // Phone
+  phone.display();
+  if(phone.active){
+  setTimeout( ()=>{
+      phone.active = false;
+      score7.deactivate();
+      fadedText.active = true;
+  }, 3000);
+  }
+
+  // // Cow
+  // cow.display();
+  // if(cow.active){
+  // setTimeout( ()=>{
+  //     cow.active = false;
+  //     score1.deactivate();
+  //     fadedText.active = true;
+  // }, 3000);
+  // }
+
+
+
+}
+function automaticAnimation(){
+
+  // Jeans
+  jeans.display();
+  if(jeans.active){
+  setTimeout( ()=>{
+      jeans.active = false;
+      score1.deactivate();
+      fadedText.active = true;
+  }, 3000);
+  }
+
+  // Cow
+  cow.display();
+  if(cow.active){
+  setTimeout( ()=>{
+      cow.active = false;
+      score1.deactivate();
+      fadedText.active = true;
+  }, 3000);
+  }
 
 }
 
@@ -742,17 +889,34 @@ function keyPressed(){
       // timerInstructions2 = 8;
     }
 
-    // Cow
+    // Coffee
     if (userInputs.length < 2){
-        cow.activate();
+        coffee.activate();
         setTimeout(()=>{
-          score1.activeH = true;
-          score1.activeS = true;
+          score3.activeH = true;
+          score3.activeS = true;
         }, 3000);
 
     }
-
+    // Apple
     if (userInputs.length < 3 && userInputs.length > 1){
+        apple.activate();
+        setTimeout(()=>{
+          score4.activeS = true;
+        }, 3000);
+
+    }
+    // Bread
+    if (userInputs.length < 4 && userInputs.length > 2){
+        bread.activate();
+        setTimeout(()=>{
+          score5.activeH = true;
+          score5.activeS = true;
+        }, 3000);
+
+    }
+    // Cotton
+    if (userInputs.length < 5 && userInputs.length > 3){
         cotton.activate();
         setTimeout(()=>{
           score2.activeH = true;
@@ -760,6 +924,35 @@ function keyPressed(){
           fadedText.active = false;
         }, 3000);
     }
+    // Chocolate
+    if (userInputs.length < 6 && userInputs.length > 4){
+        chocolate.activate();
+        setTimeout(()=>{
+          score6.activeS = true;
+          fadedText.active = false;
+        }, 3000);
+    }
+    // Phone
+    if (userInputs.length < 7 && userInputs.length > 5){
+        phone.activate();
+        setTimeout(()=>{
+          score7.activeH = true;
+          score7.activeS = true;
+          fadedText.active = false;
+        }, 3000);
+    }
+
+
+    // Passive Mode
+    // // Cow
+    // if (userInputs.length < 2){
+    //     cow.activate();
+    //     setTimeout(()=>{
+    //       score1.activeH = true;
+    //       score1.activeS = true;
+    //     }, 3000);
+    //
+    // }
 
     // // Waterfall
     // waterfall.active = true;
@@ -771,40 +964,60 @@ function keyPressed(){
 
 
     }
-    else if (keyCode === 8 && state === `active` && instructions2.active === true){
+    else if (keyCode === 8 && state === `active`){
 
-      // Reset Stop Command
-      instructions2.active = false;
-      timerInstructions2 = 10;
-      timerInstructions = 3;
-      button2.active = true;
+      if(instructions2.active){
+        // Reset Stop Command
+        instructions2.active = false;
+        timerInstructions2 = 10;
+        timerInstructions = 3;
+        button2.active = true;
 
-      drop2.y = -5;
-      drop2.vy = 0;
+        drop2.y = -5;
+        drop2.vy = 0;
 
 
-
-
-      setTimeout( ()=>{
-        if(stopCommands.length < 4){
-        interruption.active = true;
-        // if(waltz.isPlaying){
-          waltz.pause();
-          waltzInterruption.loop();
-          returnToActive();
-          // playMusic();
-        // }
-
-        // waltz.pause();
-        // setTimeout( ()=>{
-        //   if(waltz.isPaused){
-        //     waltz.loop();
-        //   }
-        // }, 4000);
-        // waltzInterruption.play();
-        // playMusic();
+        setTimeout( ()=>{
+          if(stopCommands.length < 4){
+          interruption.active = true;
+          // if(waltz.isPlaying){
+            waltz.pause();
+            waltzInterruption.loop();
+            returnToActive();
+        }
+      }, 1000);
       }
-    }, 1000);
+
+    //   // Reset Stop Command
+    //   instructions2.active = false;
+    //   timerInstructions2 = 10;
+    //   timerInstructions = 3;
+    //   button2.active = true;
+    //
+    //   drop2.y = -5;
+    //   drop2.vy = 0;
+    //
+    //
+    //   setTimeout( ()=>{
+    //     if(stopCommands.length < 4){
+    //     interruption.active = true;
+    //     // if(waltz.isPlaying){
+    //       waltz.pause();
+    //       waltzInterruption.loop();
+    //       returnToActive();
+    //       // playMusic();
+    //     // }
+    //
+    //     // waltz.pause();
+    //     // setTimeout( ()=>{
+    //     //   if(waltz.isPaused){
+    //     //     waltz.loop();
+    //     //   }
+    //     // }, 4000);
+    //     // waltzInterruption.play();
+    //     // playMusic();
+    //   }
+    // }, 1000);
 
       //   setTimeout( ()=>{
       //
@@ -829,6 +1042,10 @@ function keyPressed(){
       // // Keep Track of Inputs
       // stopCommands.push(stopCommand);
 
+      // if(stopCommands.length < 4){
+      //
+      // }
+
     }
 
   }
@@ -840,6 +1057,24 @@ function keyReleased(){
     }
     else{
       return;
+
+      setTimeout( ()=>{
+        jeans.activate();
+        setTimeout(()=>{
+          score8.activeS = true;
+          fadedText.active = false;
+        }, 3000);
+      }, 200);
+
+      setTimeout( ()=>{
+        cow.activate();
+        setTimeout(()=>{
+          score1.activeS = true;
+          fadedText.active = false;
+        }, 3000);
+      }, 7000);
+      
+      setTimeout(automaticAnimation, 3000);
     }
 
   }
