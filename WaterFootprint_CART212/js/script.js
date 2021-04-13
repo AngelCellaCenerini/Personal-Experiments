@@ -11,7 +11,7 @@ let timerInstructions = 4;
 // let timerInstructions2 = 30;
 let timerInstructions2 = 5;
 let timerUserInput = 2;
-let timerActive = 80;
+let timerActive = 120;
 let timerInterruption = 4;
 let timerPassive = 10;
 let timerAnimation1 = 1;
@@ -210,8 +210,8 @@ function setup() {
   let stringB2 = `+  10 000  LITRES`;
   score2 = new HighScore(stringB1, stringB2);
   // Chocolate
-  let stringF1 = `1KG  COTTON  FABRIC`;
-  let stringF2 = `+  10 000  LITRES`;
+  let stringF1 = `100G  CHOCOLATE`;
+  let stringF2 = `+  1700  LITRES`;
   score6 = new HighScore(stringF1, stringF2);
   // Phone
   let stringG1 = `1  SMARTPHONE`;
@@ -333,7 +333,7 @@ function draw() {
     pop();
 
     // Waterfall
-    bigWaterfall.update();
+    // bigWaterfall.update();
 
     // Base
     push();
@@ -895,6 +895,7 @@ function keyPressed(){
         setTimeout(()=>{
           score3.activeH = true;
           score3.activeS = true;
+          fadedText.active = false;
         }, 3000);
 
     }
@@ -903,6 +904,7 @@ function keyPressed(){
         apple.activate();
         setTimeout(()=>{
           score4.activeS = true;
+          fadedText.active = false;
         }, 3000);
 
     }
@@ -912,6 +914,7 @@ function keyPressed(){
         setTimeout(()=>{
           score5.activeH = true;
           score5.activeS = true;
+          fadedText.active = false;
         }, 3000);
 
     }
@@ -1073,7 +1076,7 @@ function keyReleased(){
           fadedText.active = false;
         }, 3000);
       }, 7000);
-      
+
       setTimeout(automaticAnimation, 3000);
     }
 
