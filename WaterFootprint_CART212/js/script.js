@@ -9,9 +9,9 @@ CART212 Final Project
 
 let timerInstructions = 4;
 // let timerInstructions2 = 30;
-let timerInstructions2 = 5;
+let timerInstructions2 = 30;
 let timerUserInput = 2;
-let timerActive = 120;
+let timerActive = 3;
 let timerInterruption = 4;
 let timerPassive = 10;
 let timerAnimation1 = 1;
@@ -182,6 +182,8 @@ function setup() {
   rectMode(CENTER);
   imageMode(CENTER);
 
+  userStartAudio();
+
   // Objects
   coffee = new Product(coffeeImage);
   apple = new Product(appleImage);
@@ -267,7 +269,9 @@ function draw() {
   }
   else if (state === `active`){
 
-    activeTimer();
+    if(userInputs.length > 0){
+      activeTimer();
+    }
 
     // User Platform
     push();
@@ -416,9 +420,6 @@ function draw() {
     //   waltz.pause();
     // }
 
-  }
-  else if (state === `passive`){
-    passiveTimer();
   }
   else if (state === `animation1`){
     windowResized();
@@ -642,7 +643,7 @@ function activeTimer(){
     timerActive --;
   }
   if(timerActive === 0){
-   state = `passive`;
+   state = `animation1`;
  }
 }
 
@@ -862,10 +863,11 @@ function keyPressed(){
     if(userInputs.length < 1){
       // playMusic();
       waltz.loop();
+
     }
 
 
-    if(userInputs.length < 6){
+    if(userInputs.length < 6 && instructions2.active === false){
       // Add Input
       userInputs.push(userInput);
       // Waterfall
@@ -889,62 +891,65 @@ function keyPressed(){
       // timerInstructions2 = 8;
     }
 
-    // Coffee
-    if (userInputs.length < 2 && interruption.active === false){
-        coffee.activate();
-        setTimeout(()=>{
-          score3.activeH = true;
-          score3.activeS = true;
-          fadedText.active = false;
-        }, 3000);
+    if (!instructions2.active){
+      // Coffee
+      if (userInputs.length < 2 && interruption.active === false){
+          coffee.activate();
+          setTimeout(()=>{
+            score3.activeH = true;
+            score3.activeS = true;
+            fadedText.active = false;
+          }, 3000);
 
-    }
-    // Apple
-    if ((userInputs.length < 3 && userInputs.length > 1) && interruption.active === false){
-        apple.activate();
-        setTimeout(()=>{
-          score4.activeS = true;
-          fadedText.active = false;
-        }, 3000);
+      }
+      // Apple
+      if ((userInputs.length < 3 && userInputs.length > 1) && interruption.active === false){
+          apple.activate();
+          setTimeout(()=>{
+            score4.activeS = true;
+            fadedText.active = false;
+          }, 3000);
 
-    }
-    // Bread
-    if ((userInputs.length < 4 && userInputs.length > 2) && interruption.active === false){
-        bread.activate();
-        setTimeout(()=>{
-          score5.activeH = true;
-          score5.activeS = true;
-          fadedText.active = false;
-        }, 3000);
+      }
+      // Bread
+      if ((userInputs.length < 4 && userInputs.length > 2) && interruption.active === false){
+          bread.activate();
+          setTimeout(()=>{
+            score5.activeH = true;
+            score5.activeS = true;
+            fadedText.active = false;
+          }, 3000);
 
+      }
+      // Cotton
+      if ((userInputs.length < 5 && userInputs.length > 3) && interruption.active === false){
+          cotton.activate();
+          setTimeout(()=>{
+            score2.activeH = true;
+            score2.activeS = true;
+            fadedText.active = false;
+          }, 3000);
+      }
+      // Chocolate
+      if ((userInputs.length < 6 && userInputs.length > 4) && interruption.active === false){
+          chocolate.activate();
+          setTimeout(()=>{
+            score6.activeS = true;
+            fadedText.active = false;
+          }, 3000);
+      }
+      // Phone
+      if ((userInputs.length < 7 && userInputs.length > 5) && interruption.active === false){
+          userInputs.push(userInput);
+          phone.activate();
+          setTimeout(()=>{
+            score7.activeH = true;
+            score7.activeS = true;
+            fadedText.active = false;
+          }, 3000);
+      }
     }
-    // Cotton
-    if ((userInputs.length < 5 && userInputs.length > 3) && interruption.active === false){
-        cotton.activate();
-        setTimeout(()=>{
-          score2.activeH = true;
-          score2.activeS = true;
-          fadedText.active = false;
-        }, 3000);
-    }
-    // Chocolate
-    if ((userInputs.length < 6 && userInputs.length > 4) && interruption.active === false){
-        chocolate.activate();
-        setTimeout(()=>{
-          score6.activeS = true;
-          fadedText.active = false;
-        }, 3000);
-    }
-    // Phone
-    if ((userInputs.length < 7 && userInputs.length > 5) && interruption.active === false){
-        userInputs.push(userInput);
-        phone.activate();
-        setTimeout(()=>{
-          score7.activeH = true;
-          score7.activeS = true;
-          fadedText.active = false;
-        }, 3000);
-    }
+
 
 
     // Passive Mode
