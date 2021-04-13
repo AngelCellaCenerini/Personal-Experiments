@@ -1,7 +1,7 @@
 class Splash{
   constructor(image){
     this.x = 372;
-    this.y = 508;
+    this.y = 512;
     this.active = false;
     this.image = image;
     this.duration = 0;

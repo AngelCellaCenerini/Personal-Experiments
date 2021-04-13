@@ -33,6 +33,7 @@ let waltzInterruption = undefined;
 let waltz = undefined;
 
 let myFont = undefined;
+let baseImage = undefined;
 let lights = undefined;
 let avatar = undefined;
 
@@ -166,7 +167,7 @@ let fadingEffect = {
   active: false
 }
 
-let state = `animation1` // Title, Animation, active, Passive
+let state = `title` // Title, Animation, active, Passive
 
 /**
 Description of preload
@@ -175,6 +176,7 @@ function preload() {
 
   myFont = loadFont('assets/pixelated.otf');
 
+  baseImage = loadImage('assets/images/baseS.png');
   lights = loadImage('assets/images/lightGIF6.gif');
   avatar = loadImage('assets/images/clown.png');
   waterfallImage = loadImage('assets/images/waterfall.gif');
@@ -380,12 +382,13 @@ function draw() {
     // bigWaterfall.update();
 
     // Base
-    push();
-    noFill();
-    stroke(255);
-    strokeWeight(5);
-    rect(width/2, 370, 200, 300);
-    pop();
+    image(baseImage, width/2, 380);
+    // push();
+    // noFill();
+    // stroke(255);
+    // strokeWeight(5);
+    // rect(width/2, 370, 200, 300);
+    // pop();
 
     instructionsTimer();
     instructionsTimer2();
@@ -744,12 +747,13 @@ function displayInterruption(){
     pop();
 
     // Base
-    push();
-    noFill();
-    stroke(255);
-    strokeWeight(5);
-    rect(width/2, 370, 200, 300);
-    pop();
+    image(baseImage, width/2, 380);
+    // push();
+    // noFill();
+    // stroke(255);
+    // strokeWeight(5);
+    // rect(width/2, 370, 200, 300);
+    // pop();
 
     // // Return to Active
     // setTimeout( ()=>{
