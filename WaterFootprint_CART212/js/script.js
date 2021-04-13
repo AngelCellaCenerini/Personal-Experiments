@@ -1061,7 +1061,7 @@ function keyPressed(){
     instructions.active = false;
     timerInstructions = 7;
     if(userInputs.length < 4 && userInputs.length > 2){
-      timerInstructions = 8;
+      timerInstructions = 10;
     }
 
     // Start Button
@@ -1308,6 +1308,11 @@ function keyReleased(){
     button2.active = false;
     if (stopCommands.length < 4){
       instructions2.active = false;
+      if(stopCommands.length < 4 && stopCommands.length > 2){
+        setTimeout( ()=>{
+          button.active = true;
+        }, 3200);
+      }
     }
     timerInstructions = 4;
     // setTimeout( ()=>{
