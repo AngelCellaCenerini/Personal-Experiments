@@ -1167,7 +1167,7 @@ function keyPressed(){
         }
         else if(userInputs.length < 5){
           instructions2.active = false;
-          timerInstructions2 = 18;
+          timerInstructions2 = 20;
         }
 
         if(stopCommands.length < 4){
@@ -1311,7 +1311,7 @@ function keyReleased(){
       if(stopCommands.length < 4 && stopCommands.length > 2){
         setTimeout( ()=>{
           button.active = true;
-        }, 3200);
+        }, 5000);
       }
     }
     timerInstructions = 4;
