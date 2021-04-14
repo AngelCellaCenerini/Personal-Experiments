@@ -8,7 +8,7 @@ CART212 Final Project
 */
 
 let timerInstructions = 4;
-let timerInstructions2 = 26;
+let timerInstructions2 = 4;
 let timerUserInput = 2;
 let timerActive = 5;
 let timerAnimation1 = 2;
@@ -561,7 +561,7 @@ function instructionsTimer2(){
   }
   if(timerInstructions2 === 0){
     if(stopCommands.length < 3 && instructions2.active === false){
-      instructions2.active = true;
+      instructions2.active = false;
       timerInstructions = 4;
     }
  }
@@ -1004,6 +1004,7 @@ function keyPressed(){
     // Reset Command
     instructions.active = false;
     timerInstructions = 7;
+    // timerInstructions = 7;
     if(userInputs.length < 5 && userInputs.length > 2){
       timerInstructions = 32;
     }
@@ -1011,6 +1012,7 @@ function keyPressed(){
     // Start Button
     if (keyIsPressed && button2.active === false && instructions2.active === false){
       button.active = true;
+      timerInstructions = 7;
       // instructions2.active = false;
       // timerInstructions2 = 8;
     }
@@ -1101,27 +1103,34 @@ function keyPressed(){
 
       if(instructions2.active){
 
-        timerInstructions = 4;
+        instructions2.active = false;
 
-        if(userInputs.length < 4){
-          timerInstructions = 30;
+        // timerInstructions = 4;
 
+        if((userInputs.length > 1 && userInputs.length < 3) || (userInputs.length > 2 && userInputs.length < 4) || (userInputs.length > 4 && userInputs.length < 6) ){
+          timerInstructions2 = 6;
+          instructions2.active = true;
         }
 
-        // Reset Stop Command
-        if(userInputs.length < 5){
-          instructions2.active = false;
-          timerInstructions = 40;
-          timerInstructions2 = 15;
-          console.log(timerInstructions2);
+        // if(userInputs.length < 4){
+        //   timerInstructions = 30;
+        //
+        // }
 
-        }
-        else if(userInputs.length > 5){
-          console.log(userInputs.length);
-          instructions2.active = false;
-          timerInstructions2 = 28;
-          console.log(timerInstructions2);
-        }
+        // // Reset Stop Command
+        // if(userInputs.length < 5){
+        //   instructions2.active = false;
+        //   timerInstructions = 40;
+        //   timerInstructions2 = 15;
+        //   console.log(timerInstructions2);
+        //
+        // }
+        // else if(userInputs.length > 5){
+        //   console.log(userInputs.length);
+        //   instructions2.active = false;
+        //   timerInstructions2 = 28;
+        //   console.log(timerInstructions2);
+        // }
 
         if(stopCommands.length < 4){
             button2.active = true;
@@ -1223,6 +1232,9 @@ function keyPressed(){
 
 function keyReleased(){
   if (state === `active` && button.active === true && keyCode === 13){
+    if(stopCommands.length > 0 && stopCommands.length < 7){
+      timerInstructions = 7;
+    }
     if(stopCommands.length < 3 && userInputs.length < 7){
       button.active = false;
     }
