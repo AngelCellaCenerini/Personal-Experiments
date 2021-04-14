@@ -273,7 +273,7 @@ function setup() {
   let stringG2 = `+  12 000  LITRES`;
   score7 = new HighScore(stringG1, stringG2);
   // Jeans
-  let stringH1 = `1  PAIR`;
+  let stringH1 = `1 PAIR  JEANS`;
   let stringH2 = `+  8 000  LITRES`;
   score8 = new HighScore(stringH1, stringH2);
   // Cow
