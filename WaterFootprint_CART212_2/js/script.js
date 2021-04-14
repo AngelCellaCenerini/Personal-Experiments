@@ -1109,9 +1109,9 @@ function keyPressed(){
         }
 
         // Reset Stop Command
-        if(userInputs.length > 2){
-          instructions2.active = false;
-          timerInstructions = 40;
+        // if(userInputs.length > 2){
+        //   instructions2.active = false;
+        //   timerInstructions = 40;
 
           if(stopCommands.length < 1){
             timerInstructions2 = 16;
@@ -1123,7 +1123,7 @@ function keyPressed(){
           // console.log(userInputs.length);
           // console.log(timerInstructions2);
 
-        }
+        // }
         // if(userInputs.length > 3 && stopCommands.length > 5){
         //   console.log(userInputs.length);
         //   instructions2.active = false;
