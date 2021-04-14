@@ -1109,19 +1109,28 @@ function keyPressed(){
         }
 
         // Reset Stop Command
-        if(userInputs.length < 5){
+        if(userInputs.length > 2){
           instructions2.active = false;
           timerInstructions = 40;
-          timerInstructions2 = 15;
-          console.log(timerInstructions2);
+
+          if(stopCommands.length < 1){
+            timerInstructions2 = 16;
+            instructions2.active = false;
+          }
+          // else if(stopCommands.length > 2){
+          //   timerInstructions2 = 28;
+          // }
+          // console.log(userInputs.length);
+          // console.log(timerInstructions2);
 
         }
-        else if(userInputs.length > 5){
-          console.log(userInputs.length);
-          instructions2.active = false;
-          timerInstructions2 = 28;
-          console.log(timerInstructions2);
-        }
+        // if(userInputs.length > 3 && stopCommands.length > 5){
+        //   console.log(userInputs.length);
+        //   instructions2.active = false;
+        //   timerInstructions2 = 28;
+        //   console.log(userInputs.length);
+        //   console.log(timerInstructions2);
+        // }
 
         if(stopCommands.length < 4){
             button2.active = true;
@@ -1232,6 +1241,9 @@ function keyReleased(){
     button2.active = false;
     if (stopCommands.length < 4){
       instructions2.active = false;
+      if(stopCommands.length > 1){
+          timerInstructions2 = 21;
+      }
       if(stopCommands.length < 4 && stopCommands.length > 2){
         setTimeout( ()=>{
           button.active = true;
