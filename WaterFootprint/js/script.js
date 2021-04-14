@@ -187,13 +187,13 @@ function preload() {
   waveLImage = loadImage('assets/images/waveL.gif');;
 
   // Objects
-  coffeeImage = loadImage('assets/images/apple.gif');
-  appleImage = loadImage('assets/images/cotton2.gif');
-  breadImage = loadImage('assets/images/cotton2.gif');
+  coffeeImage = loadImage('assets/images/coffe.gif');
+  appleImage = loadImage('assets/images/apple.gif');
+  breadImage = loadImage('assets/images/bread.gif');
   cottonImage = loadImage('assets/images/cotton2.gif');
-  chocolateImage = loadImage('assets/images/cotton2.gif');
-  phoneImage = loadImage('assets/images/cotton2.gif');
-  jeansImage = loadImage('assets/images/cotton2.gif');
+  chocolateImage = loadImage('assets/images/chocolate.gif');
+  phoneImage = loadImage('assets/images/phone.gif');
+  jeansImage = loadImage('assets/images/jeans.gif');
   cowImage = loadImage('assets/images/cow.gif');
 
   // Finale
