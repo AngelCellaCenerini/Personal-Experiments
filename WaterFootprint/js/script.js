@@ -206,7 +206,7 @@ function preload() {
   chocolateImage = loadImage('assets/images/chocolate.gif');
   phoneImage = loadImage('assets/images/phone.gif');
   jeansImage = loadImage('assets/images/jeans.gif');
-  cowImage = loadImage('assets/images/cow.gif');
+  cowImage = loadImage('assets/images/cow2.gif');
 
   // Finale
   screenImage = loadImage('assets/images/finalScreen.gif');
