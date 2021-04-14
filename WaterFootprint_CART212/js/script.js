@@ -11,19 +11,19 @@ let timerInstructions = 4;
 let timerInstructions2 = 26;
 let timerUserInput = 2;
 let timerActive = 5;
-let timerAnimation1 = 1;
+let timerAnimation1 = 2;
 let timerAnimation2 = 1;
 let timerAnimation3 = 1;
-let timerAnimation4 = 10;
-let timerScreen1 = 2;
-let timerScreen2 = 2;
-let timerScreen3 = 2;
-let timerScreen4 = 4;
-let timerScreen5 = 4;
-let timerScreen6 = 4;
-let timerScreen7 = 6;
-let timerScreen8 = 6;
-let timerScreen9 = 6;
+let timerAnimation4 = 18;
+let timerScreen1 = 5;
+let timerScreen2 = 5;
+let timerScreen3 = 5;
+let timerScreen4 = 7;
+let timerScreen5 = 7;
+let timerScreen6 = 7;
+let timerScreen7 = 9;
+let timerScreen8 = 9;
+let timerScreen9 = 9;
 
 
 
@@ -478,8 +478,8 @@ function draw() {
   }
   else if (state === `animation4`){
     background(0);
-    switchToEnding();
-    // animation4Timer();
+    // switchToEnding();
+    animation4Timer();
     image(screenImage, width/4, height/6, 250, 210);
     image(screenImage, width/2, height/6, 250, 210);
     image(screenImage, 3*width/4, height/6, 250, 210);
@@ -634,7 +634,6 @@ function automaticAnimationJeans(){
 
   // Jeans
   jeans.display();
-  console.log(jeans.active);
   if(jeans.active){
   setTimeout( ()=>{
       jeans.active = false;
@@ -729,8 +728,8 @@ function returnToActive(){
     interruption.active = false;
     // if(waltzInterruption.isPlaying){
       waltzInterruption.stop();
-      waltz.loop();
-  }, 5000);
+      waltz.play();
+  }, 6000);
 }
 
 function returnToActive2(){
@@ -740,8 +739,8 @@ function returnToActive2(){
     interruption.active = false;
     // if(waltzInterruption.isPlaying){
       waltzInterruption.stop();
-      waltz.loop();
-  }, 2500);
+      waltz.play();
+  }, 3000);
 }
 
 function windowResized() {
@@ -782,7 +781,10 @@ function animation4Timer(){
 }
 
 function switchToEnding(){
-  if (waltz.isPlaying === false){
+  if (waltz.isPlaying){
+    return;
+  }
+  else{
     setTimeout( ()=>{
       state = `credits`;
     }, 500);
@@ -981,7 +983,7 @@ function keyPressed(){
     }
     if(userInputs.length < 1){
       // playMusic();
-      waltz.loop();
+      waltz.play();
 
     }
 
@@ -1002,8 +1004,8 @@ function keyPressed(){
     // Reset Command
     instructions.active = false;
     timerInstructions = 7;
-    if(userInputs.length < 4 && userInputs.length > 2){
-      timerInstructions = 10;
+    if(userInputs.length < 5 && userInputs.length > 2){
+      timerInstructions = 32;
     }
 
     // Start Button
@@ -1101,15 +1103,24 @@ function keyPressed(){
 
         timerInstructions = 4;
 
-        // Reset Stop Command
         if(userInputs.length < 4){
-          instructions2.active = false;
-          timerInstructions2 = 12;
+          timerInstructions = 30;
 
         }
-        else if(userInputs.length < 5){
+
+        // Reset Stop Command
+        if(userInputs.length < 5){
           instructions2.active = false;
-          timerInstructions2 = 18;
+          timerInstructions = 40;
+          timerInstructions2 = 15;
+          console.log(timerInstructions2);
+
+        }
+        else if(userInputs.length > 5){
+          console.log(userInputs.length);
+          instructions2.active = false;
+          timerInstructions2 = 28;
+          console.log(timerInstructions2);
         }
 
         if(stopCommands.length < 4){
@@ -1117,9 +1128,9 @@ function keyPressed(){
         }
 
 
-        if(button2.active){
-          instructions2.active = false;
-        }
+        // if(button2.active){
+        //   instructions2.active = false;
+        // }
 
 
 
@@ -1168,7 +1179,7 @@ function keyPressed(){
     //     // waltz.pause();
     //     // setTimeout( ()=>{
     //     //   if(waltz.isPaused){
-    //     //     waltz.loop();
+    //     //     waltz.play();
     //     //   }
     //     // }, 4000);
     //     // waltzInterruption.play();
@@ -1187,7 +1198,7 @@ function keyPressed(){
       //     interruption.active = false;
       //     waltzInterruption.pause();
       //     if (waltz.isPaused){
-      //       waltz.loop();
+      //       waltz.play();
       //     }
       //
       //     console.log(interruption.active);
@@ -1229,14 +1240,14 @@ function keyReleased(){
           // }, 2000);
           setTimeout( ()=>{
             cow.activate();
-          }, 6000);
+          }, 7000);
           dunno();
-        }, 4000);
+        }, 5000);
       }
     }
     timerInstructions = 4;
     // setTimeout( ()=>{
-    //   waltz.loop();
+    //   waltz.play();
     // }, 4000);
   }
 }
@@ -1258,30 +1269,27 @@ function dunno(){
   }, 8200);
 
   setTimeout( ()=>{
-    // jeans.activate();
-    console.log(jeans.active);
     setTimeout(()=>{
       score8.activeS = true;
       fadedText.active = false;
     }, 3000);
-  }, 200);
+  }, 400);
 
   setTimeout( ()=>{
-    // cow.activate();
     setTimeout(()=>{
       score1.activeS = true;
       fadedText.active = false;
-    }, 3000);
-  }, 7000);
+    }, 2000);
+  }, 8000);
 
   setTimeout(automaticAnimationJeans, 4000);
   setTimeout(automaticAnimationCow, 9000);
 
   setTimeout( ()=>{
     bigWaterfall.active = true;
-  }, 14000);
+  }, 15000);
 
   setTimeout( ()=>{
     waves.active = true;
-  }, 18000);
+  }, 19000);
 }
