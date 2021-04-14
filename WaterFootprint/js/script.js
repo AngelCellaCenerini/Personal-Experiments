@@ -187,7 +187,7 @@ function preload() {
   waveLImage = loadImage('assets/images/waveL.gif');;
 
   // Objects
-  coffeeImage = loadImage('assets/images/cotton2.gif');
+  coffeeImage = loadImage('assets/images/cow.gif');
   appleImage = loadImage('assets/images/cotton2.gif');
   breadImage = loadImage('assets/images/cotton2.gif');
   cottonImage = loadImage('assets/images/cotton2.gif');
