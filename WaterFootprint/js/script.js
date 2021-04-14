@@ -209,7 +209,7 @@ function preload() {
   cowImage = loadImage('assets/images/cow.gif');
 
   // Finale
-  screenImage = loadImage('assets/images/prova.gif');
+  screenImage = loadImage('assets/images/finalScreen.gif');
 
   // SFX
   waltzIntro = loadSound('assets/sounds/intro.mp3');
