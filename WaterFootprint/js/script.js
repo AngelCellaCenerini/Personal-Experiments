@@ -176,7 +176,7 @@ Description of preload
 function preload() {
   myFont = loadFont('assets/pixelated.otf');
 
-  baseImage = loadImage('assets/images/baseS.png');
+  baseImage = loadImage('assets/images/base3.png');
   lights = loadImage('assets/images/lightGIF6.gif');
   avatar = loadImage('assets/images/clown.png');
   waterfallImage = loadImage('assets/images/waterfall.gif');
@@ -383,7 +383,7 @@ else if (state === `active`){
   bigWaterfall.update();
 
   // Base
-  image(baseImage, width/2, 380);
+  image(baseImage, width/2, 290);
   // push();
   // noFill();
   // stroke(255);
@@ -701,11 +701,11 @@ image(lights, width/2, 155);
   // Black Border
   push();
   fill(30);
-  rect(width/2, 632, 250, 220);
+  rect(width/2, 642, 250, 220);
   pop();
 
   // Base
-  image(baseImage, width/2, 380);
+  image(baseImage, width/2, 420);
   // push();
   // noFill();
   // stroke(255);
