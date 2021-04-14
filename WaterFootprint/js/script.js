@@ -317,11 +317,11 @@ else if (state === `active`){
   // User Platform
   push();
   fill(139, 217, 199);
-  rect(120, 290, 75, 18);
+  rect(120, 300, 75, 18);
   pop();
 
   // Avatar
-  image(avatar, 120, 240);
+  image(avatar, 120, 250);
 
   // Lights
   image(lights, width/2, 155);
@@ -988,9 +988,10 @@ if ( keyCode === 13 && state === `active`){
   }
 
 
-  if(userInputs.length < 6 && instructions2.active === false && button2.active === false){
+  if(userInputs.length < 6 && instructions.active === true){
     // Add Input
     userInputs.push(userInput);
+    console.log(userInputs.length);
     // Waterfall
     waterfall.active = true;
 
@@ -1218,8 +1219,9 @@ if ( keyCode === 13 && state === `active`){
     // }, 1000);
     //
     // // Keep Track of Inputs
-    if (stopCommands.length < 4){
+    if (stopCommands.length < 4 && button2.active === true){
       stopCommands.push(stopCommand);
+      console.log(stopCommands.length);
     }
 
 
