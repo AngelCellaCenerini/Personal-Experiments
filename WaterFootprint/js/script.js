@@ -16,15 +16,15 @@ let timerAnimation1 = 2;
 let timerAnimation2 = 1;
 let timerAnimation3 = 1;
 let timerAnimation4 = 18;
-let timerScreen1 = 5;
-let timerScreen2 = 5;
-let timerScreen3 = 5;
-let timerScreen4 = 7;
-let timerScreen5 = 7;
-let timerScreen6 = 7;
-let timerScreen7 = 9;
-let timerScreen8 = 9;
-let timerScreen9 = 9;
+let timerScreen1 = 4;
+let timerScreen2 = 4;
+let timerScreen3 = 4;
+let timerScreen4 = 6;
+let timerScreen5 = 6;
+let timerScreen6 = 6;
+let timerScreen7 = 8;
+let timerScreen8 = 8;
+let timerScreen9 = 8;
 
 
 
@@ -376,14 +376,14 @@ else if (state === `active`){
   // Black Border
   push();
   fill(30);
-  rect(width/2, 632, 250, 220);
+  rect(width/2, 642, 250, 220);
   pop();
 
   // Waterfall
   bigWaterfall.update();
 
   // Base
-  image(baseImage, width/2, 290);
+  image(baseImage, width/2, 400);
   // push();
   // noFill();
   // stroke(255);
@@ -404,7 +404,7 @@ else if (state === `active`){
   }
 
   // Stop Command
-  if (instructions2.active){
+  if (instructions2.active === true && button2.active === false){
     push();
     fill(255);
     textSize(23);
@@ -705,7 +705,7 @@ image(lights, width/2, 155);
   pop();
 
   // Base
-  image(baseImage, width/2, 420);
+  image(baseImage, width/2, 400);
   // push();
   // noFill();
   // stroke(255);
@@ -1114,7 +1114,7 @@ if ( keyCode === 13 && state === `active`){
       //   timerInstructions = 40;
 
         if(stopCommands.length < 1){
-          timerInstructions2 = 16;
+          timerInstructions2 = 15;
           instructions2.active = false;
         }
         // else if(stopCommands.length > 2){
@@ -1132,8 +1132,9 @@ if ( keyCode === 13 && state === `active`){
       //   console.log(timerInstructions2);
       // }
 
-      if(stopCommands.length < 4){
+      if(stopCommands.length < 3){
           button2.active = true;
+          instructions2.active = false;
       }
 
 
@@ -1239,6 +1240,7 @@ if (state === `active` && button.active === true && keyCode === 13){
 }
 else if (state === `active` && button2.active === true && keyCode === 8){
   button2.active = false;
+  // instructions2.active = false;
   if (stopCommands.length < 4){
     instructions2.active = false;
     if(stopCommands.length > 1){
