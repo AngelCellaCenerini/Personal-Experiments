@@ -19,12 +19,12 @@ let timerAnimation4 = 19;
 let timerScreen1 = 4;
 let timerScreen2 = 5;
 let timerScreen3 = 6;
-let timerScreen4 = 8;
-let timerScreen5 = 9;
-let timerScreen6 = 10;
-let timerScreen7 = 12;
-let timerScreen8 = 13;
-let timerScreen9 = 14;
+let timerScreen4 = 7;
+let timerScreen5 = 8;
+let timerScreen6 = 9;
+let timerScreen7 = 11;
+let timerScreen8 = 12;
+let timerScreen9 = 13;
 
 
 
@@ -35,7 +35,14 @@ let waltz = undefined;
 let myFont = undefined;
 let baseImage = undefined;
 let lights = undefined;
+
 let avatar = undefined;
+let avatarImage1 = undefined;
+let avatarImage2 = undefined;
+let avatarImage3 = undefined;
+let avatarImage4 = undefined;
+let avatarImageA = undefined;
+let avatarImageB = undefined;
 
 let userInput = undefined;
 let userInputs = [];
@@ -178,7 +185,12 @@ function preload() {
 
   baseImage = loadImage('assets/images/base3.png');
   lights = loadImage('assets/images/lightGIF6.gif');
-  avatar = loadImage('assets/images/clown.png');
+  avatarImage1 = loadImage('assets/images/handDefault.png');
+  avatarImage2 = loadImage('assets/images/thumbsU.gif');
+  avatarImage3 = loadImage('assets/images/handStop.png');
+  avatarImage4 = loadImage('assets/images/handK.gif');
+  avatarImageA = loadImage('assets/images/handDefaultF.png');
+  avatarImageB = loadImage('assets/images/thumbsUF.gif');
   waterfallImage = loadImage('assets/images/waterfall.gif');
   bigWaterfallImage = loadImage('assets/images/bigWaterfall.gif');
   splashImage = loadImage('assets/images/splash2.gif');
@@ -221,6 +233,9 @@ function setup() {
   imageMode(CENTER);
 
   userStartAudio();
+
+  // Avatar
+  avatar = new Avatar(avatarImage1, avatarImage2, avatarImage3, avatarImage4, avatarImageA, avatarImageB);
 
   // Objects
   coffee = new Product(coffeeImage);
@@ -317,11 +332,14 @@ else if (state === `active`){
   // User Platform
   push();
   fill(139, 217, 199);
-  rect(120, 300, 75, 18);
+  rect(120, 310, 75, 18);
+  rect(630, 310, 75, 18);
   pop();
 
   // Avatar
-  image(avatar, 120, 250);
+  avatar.display();
+
+  // image(avatar, 120, 250);
 
   // Lights
   image(lights, width/2, 155);
@@ -682,11 +700,15 @@ pop();
 // User Platform
 push();
 fill(139, 217, 199);
-rect(120, 300, 75, 18);
+rect(120, 310, 75, 18);
+rect(630, 310, 75, 18);
 pop();
 
 // Avatar
-image(avatar, 120, 250);
+avatar.active1 = false;
+avatar.active3 = true;
+avatar.display();
+// image(avatar, 120, 250);
 
 // Lights
 image(lights, width/2, 155);
@@ -731,6 +753,8 @@ function returnToActive(){
 
 setTimeout( ()=>{
   interruption.active = false;
+  avatar.active3 = false;
+  avatar.active1 = true;
   // if(waltzInterruption.isPlaying){
     waltzInterruption.stop();
     waltz.play();
@@ -742,6 +766,8 @@ function returnToActive2(){
 
 setTimeout( ()=>{
   interruption.active = false;
+  avatar.active3 = false;
+  avatar.active1 = true;
   // if(waltzInterruption.isPlaying){
     waltzInterruption.stop();
     waltz.play();
@@ -996,6 +1022,7 @@ if ( keyCode === 13 && state === `active`){
   if(userInputs.length < 6 && instructions.active === true){
     // Add Input
     userInputs.push(userInput);
+    avatar.thumbsUp();
     console.log(userInputs.length);
     // Waterfall
     waterfall.active = true;
@@ -1256,6 +1283,7 @@ else if (state === `active` && button2.active === true && keyCode === 8){
     if(stopCommands.length < 4 && stopCommands.length > 2){
       setTimeout( ()=>{
         button.active = true;
+        avatar.fuckIt();
         // setTimeout( ()=>{
           jeans.activate();
         // }, 2000);
