@@ -12,19 +12,19 @@ let timerInstructions = 4;
 let timerInstructions2 = 26;
 let timerUserInput = 2;
 let timerActive = 5;
-let timerAnimation1 = 2;
+let timerAnimation1 = 1;
 let timerAnimation2 = 1;
 let timerAnimation3 = 1;
-let timerAnimation4 = 18;
+let timerAnimation4 = 19;
 let timerScreen1 = 4;
-let timerScreen2 = 4;
-let timerScreen3 = 4;
-let timerScreen4 = 6;
-let timerScreen5 = 6;
-let timerScreen6 = 6;
-let timerScreen7 = 8;
-let timerScreen8 = 8;
-let timerScreen9 = 8;
+let timerScreen2 = 5;
+let timerScreen3 = 6;
+let timerScreen4 = 8;
+let timerScreen5 = 9;
+let timerScreen6 = 10;
+let timerScreen7 = 12;
+let timerScreen8 = 13;
+let timerScreen9 = 14;
 
 
 
@@ -448,9 +448,6 @@ else if (state === `active`){
   message.update();
   message2.update();
   message3.update();
-  message4.update();
-  message5.update();
-  message6.update();
 
 }
 else if (state === `animation1`){
@@ -503,6 +500,14 @@ else if (state === `animation4`){
 
   // Squares
   coverPic();
+
+  // Messages
+  message4.x = width/2;
+  message4.update();
+  message5.x = width/2;
+  message5.update();
+  message6.x = width/2;
+  message6.update();
 }
 else if (state === `credits`){
 
@@ -677,11 +682,11 @@ pop();
 // User Platform
 push();
 fill(139, 217, 199);
-rect(120, 290, 75, 18);
+rect(120, 300, 75, 18);
 pop();
 
 // Avatar
-image(avatar, 120, 240);
+image(avatar, 120, 250);
 
 // Lights
 image(lights, width/2, 155);
@@ -1256,7 +1261,7 @@ else if (state === `active` && button2.active === true && keyCode === 8){
         // }, 2000);
         setTimeout( ()=>{
           cow.activate();
-        }, 7000);
+        }, 6000);
         dunno();
       }, 5000);
     }

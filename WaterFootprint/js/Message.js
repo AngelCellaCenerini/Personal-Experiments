@@ -8,7 +8,7 @@ class Message{
     this.vy = 0;
     this.speed = 7;
     this.active = false;
-    this.switch = 2000;
+    this.switch = 30000;
     this.duration = 0;
     this.duration2 = 4;
   }
