@@ -1,7 +1,7 @@
 class Product{
   constructor(image){
     this.x = 375;
-    this.y = 420;
+    this.y = 400;
     this.image = image;
     this.active = false;
   }

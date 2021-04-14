@@ -11,8 +11,8 @@ author, and this description to match your project!
 let timerInstructions = 4;
 let timerInstructions2 = 26;
 let timerUserInput = 2;
-let timerActive = 5;
-let timerAnimation1 = 1;
+let timerActive = 4;
+let timerAnimation1 = 2;
 let timerAnimation2 = 1;
 let timerAnimation3 = 1;
 let timerAnimation4 = 19;
@@ -22,9 +22,9 @@ let timerScreen3 = 6;
 let timerScreen4 = 7;
 let timerScreen5 = 8;
 let timerScreen6 = 9;
-let timerScreen7 = 11;
-let timerScreen8 = 12;
-let timerScreen9 = 13;
+let timerScreen7 = 10;
+let timerScreen8 = 11;
+let timerScreen9 = 12;
 
 
 
