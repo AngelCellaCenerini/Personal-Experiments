@@ -10,7 +10,7 @@ class Message{
     this.active = false;
     this.switch = 30000;
     this.duration = 0;
-    this.duration2 = 4;
+    this.duration2 = 5;
   }
 
   update(){

@@ -1103,6 +1103,8 @@ if ( keyCode === 13 && state === `active`){
           score7.activeH = true;
           score7.activeS = true;
           fadedText.active = false;
+          userInputs.push(userInput);
+
         }, 3000);
     }
   }
@@ -1282,6 +1284,7 @@ else if (state === `active` && button2.active === true && keyCode === 8){
     }
     if(stopCommands.length < 4 && stopCommands.length > 2){
       setTimeout( ()=>{
+        userInputs.length = 10;
         button.active = true;
         avatar.fuckIt();
         // setTimeout( ()=>{
