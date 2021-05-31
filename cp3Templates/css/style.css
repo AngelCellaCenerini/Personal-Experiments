@@ -15,6 +15,34 @@ body {
   display: grid; /* Set up the grid and justify/align to center */
   justify-content: center;
   align-content: center;
-  height: 100vh; /* Body is the height of the viewport */
-  overflow: hidden; /* Hide anything that goes off the window size */
+  background-color: #4969F1;
+  /* height: 100vh; /* Body is the height of the viewport */ */
+  /* overflow: hidden; /* Hide anything that goes off the window size */ */
 }
+
+#t1{
+  opacity: 100;
+}
+#t2{
+  opacity: 0;
+}
+#t3{
+  opacity: 0;
+}
+#t4{
+  opacity: 0;
+}
+
+.templates{
+  position: absolute;
+  width: 100%;
+  height: 210%;
+  margin: auto;
+  /* opacity: 0; */
+}
+
+/* #t12{
+  width: 97%;
+  height: 120%;
+  margin: auto;
+} */
